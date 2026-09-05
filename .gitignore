@@ -1,0 +1,42 @@
+# Node & NPM
+node_modules/
+.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# NestJS / API
+dist/
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Keep example env
+!.env.example
+
+# IDE & System
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Prisma
+/prisma/*.db
+/prisma/*.db-journal
+
+# Antigravity & OS temp
+.gemini/
+tmp/

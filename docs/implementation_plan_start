@@ -1,0 +1,155 @@
+# Phase 0: Discovery, Architecture & Master Implementation Plan
+## Nutrexia D2C E-Commerce Web Application
+
+---
+
+## 1. Project Overview & Requirements Synthesis
+
+The **Nutrexia D2C E-Commerce Web Application** is a responsive Direct-to-Consumer platform built to showcase and sell Nutrexia's climate-smart, millet-based plant protein products. 
+
+This project strictly adheres to two sources of truth:
+1. **`Nutrexia_SRS.md`**: Functional & Technical Source of Truth (Architecture, Data Models, Business Rules, API layer, Security, Subscriptions, Admin Panel, Phasing).
+2. **`Nutrexia_Template_Claude.html`**: Visual & UI Source of Truth (Color palette, typography, visual hierarchy, layout spacing, interactive components, design language).
+
+---
+
+## 2. Technical Stack & Architecture
+
+### System Architecture
+The application follows a production-grade 3-tier monorepo architecture:
+- **Frontend App (`apps/web`)**: Next.js 15+ (App Router, React 19, TypeScript), SSR/SSG for public pages, PWA with Web App Manifest and Service Worker caching.
+- **Backend API (`apps/api`)**: Node.js REST API with NestJS (TypeScript), serving as the single system of truth for commerce operations, pricing calculations, authentication, Razorpay payment verification, Shiprocket fulfillment, and subscription scheduling.
+- **Admin Panel (`apps/admin`)**: Next.js React Dashboard for catalogue management, batch traceability, orders, inventory, customers, coupons, reviews, and CMS content.
+- **Shared Packages (`packages/*`)**:
+  - `packages/ui`: Shared React design system components extracted from `Nutrexia_Template_Claude.html`.
+  - `packages/types`: Shared TypeScript interfaces/types (User, Product, Order, Subscription, etc.).
+  - `packages/validation`: Zod schemas for client-side form validation and API DTO validation.
+  - `packages/utils`: Shared formatting helpers (INR currency formatting, date helpers, calculations).
+- **Database & ORM (`prisma/`)**: PostgreSQL datastore with Prisma ORM for type-safe schema definitions and migrations.
+
+```
+nutrexia/
+├── apps/
+│   ├── web/               # Next.js 15 Storefront + PWA
+│   ├── api/               # NestJS Backend API
+│   └── admin/             # Next.js Admin Panel
+├── packages/
+│   ├── ui/                # Shared Nutrexia UI Component Library
+│   ├── types/             # Shared TypeScript Interfaces & Enums
+│   ├── validation/        # Shared Zod Schemas
+│   └── utils/             # Shared Helper Functions & Formatting
+├── prisma/
+│   └── schema.prisma      # PostgreSQL Schema & Migrations
+├── docs/                  # Project specifications & baseline template
+├── .env.example           # Centralized environment variable template
+├── pnpm-workspace.yaml    # PNPM Monorepo configuration
+├── package.json           # Root scripts and workspace config
+└── README.md              # Project documentation
+```
+
+---
+
+## 3. Hostinger Deployment Strategy & Environment Diagnostics
+
+### Environment Status (Inspected):
+- **Node.js**: `v24.15.0` (Detected & Verified)
+- **npm**: `v11.12.1` (Detected & Verified)
+- **pnpm**: `v11.13.0` (Detected & Verified)
+- **Git**: Installed (Repository initialization required in Phase 1 for `https://github.com/idealersb2b-svg/nutrexia`)
+
+### User Action Required (Hostinger Environment Clarification):
+To ensure we configure our build scripts, database connections, and process managers correctly for Hostinger, please provide details on your Hostinger plan:
+
+> [!IMPORTANT]
+> **Hostinger Infrastructure Questionnaire:**
+> 1. **Hosting Type**: Is your Hostinger plan a **VPS** (KVM), **Cloud Hosting**, or **Shared Web Hosting / Node.js Hosting**?
+> 2. **Database Support**: Will PostgreSQL be hosted directly on Hostinger, or will we use a managed PostgreSQL service (e.g., Supabase / Neon / Aiven / Hostinger Managed Postgres)?
+> 3. **SSH Access**: Do you have SSH terminal access enabled in your Hostinger cPanel / hPanel?
+> 4. **Domain Setup**: What is your primary domain name registered on Hostinger (e.g., `nutrexia.in` / `nutrexia.com`)?
+
+---
+
+## 4. Design System & Component Mapping (`Nutrexia_Template_Claude.html`)
+
+The visual identity established in `Nutrexia_Template_Claude.html` will be extracted into CSS design tokens and modular React components within `packages/ui` and `apps/web`:
+
+### Design Tokens
+- **Colors**:
+  - `--pea`: `#3F7A1F` (Primary Green)
+  - `--pea-deep`: `#2C5715` (Deep Green)
+  - `--pea-bright`: `#7CB233` (Accent Green)
+  - `--gold`: `#F0B429` (Warning / Badge Gold)
+  - `--gold-deep`: `#D99A0F`
+  - `--char`: `#181712` (Dark Charcoal)
+  - `--char-soft`: `#2A2822`
+  - `--cream`: `#FAF6EA` (Background Cream)
+  - `--cream-2`: `#F1ECDB` (Secondary Section Cream)
+  - `--choc`: `#3B2417` (Chocolate Accord)
+  - `--white`: `#FFFFFF`
+- **Typography**:
+  - Headings: `Space Grotesk`, sans-serif
+  - Body: `Inter`, sans-serif
+
+### Component Breakdown
+1. **`Ticker`**: Animated announcement bar showcasing founding batch pricing, lab testing, carbon offset, and zero added sugar highlights.
+2. **`Header / Nav`**: Glassmorphism sticky header (`backdrop-filter: blur(10px)`), brand logo, section navigation, and dynamic cart drawer button with item counter.
+3. **`Hero`**: Dynamic hero section with diagonal gradient overlay (`hero-diag`), value proposition, CTA buttons, trust badges, floating macro/feature badges (`24.9g Protein`, `13.6 Nutraceuticals`, `0g Added sugar`).
+4. **`AudienceTabs`**: Interactive 3-panel tab switcher ("Gen Z hustlers", "Health-conscious moms", "Fitness devotees") with animated stat callouts.
+5. **`FormulationGrid`**: 4-card grid detailing Core Grains, Protein Matrix, Gut Health, and Immunity Shield.
+6. **`NutritionSection`**: Dark charcoal section with interactive tabbed panels (Vitamins, Minerals, Amino Acids, Safety Panel) with animated progress bars (`bar-fill`).
+7. **`ComparisonTable`**: Brand comparison matrix comparing Nutrexia to market alternatives.
+8. **`FOMODropSection`**: Countdown timer, live stock indicator bar (`742/1000 kg claimed`), and founding member pricing card.
+9. **`ProductCard` & `ShopGrid`**: Catalogue items (Trial Pack, 1kg Pouch, Monthly Subscription) with quantity selectors and "Add to Cart" state.
+10. **`StorySection`**: Navy Commander founder story, awards & incubations badges.
+11. **`ClimateImpact`**: Green sustainability banner with carbon reduction metrics.
+12. **`TestimonialGrid`**: Verified beta taster reviews.
+13. **`FAQAccordion`**: Expandable Q&A accordion.
+14. **`NewsletterWaitlist`**: Email capture form for future drop notifications.
+15. **`CartDrawer`**: Slide-out cart drawer with dynamic item listing, subtotal calculation, item removal, and checkout CTA.
+16. **`ToastNotification` & `SocialProofPopup`**: Micro-interaction notifications for cart updates and real-time purchase activity.
+
+---
+
+## 5. Database Schema & Data Modeling (`prisma/schema.prisma`)
+
+The system datastore will model the core domain entities as specified in SRS Section 7:
+
+- **Users & Auth**: `User`, `UserProfile`, `Address`, `RefreshToken`, `AuditLog`.
+- **Catalogue & Pricing**: `Product`, `ProductVariant`, `ProductImage`, `Category`.
+- **Inventory & Batches**: `Inventory`, `InventoryMovement`, `Batch` (batch number, mfg date, exp date, quantity, lab report/COA reference).
+- **Commerce**: `Cart`, `CartItem`, `Order`, `OrderItem`, `OrderAddress`.
+- **Payments & Refunds**: `Payment` (Razorpay order ID, payment ID, signature, status), `Refund`.
+- **Subscriptions**: `Subscription` (frequency, status, next billing date, address ID), `SubscriptionItem`.
+- **Marketing & Engagement**: `Coupon`, `CouponUsage`, `NewsletterSubscriber`, `Wishlist`, `Review`.
+- **Content & CMS**: `BlogPost`, `FAQ`, `LabReport`, `Certification`, `HomepageBanner`.
+
+---
+
+## 6. Comprehensive Phased Roadmap
+
+| Phase | Phase Name | Scope & Deliverables | Verification Strategy |
+|:---:|---|---|---|
+| **Phase 0** | Discovery & Architecture | Requirements analysis, Hostinger strategy, Monorepo plan, architecture approval. | Plan review & user sign-off. |
+| **Phase 1** | Foundation & Environments | Initialize PNPM monorepo, NestJS API, Next.js Storefront & Admin, Prisma setup, Git repository connection. | Monorepo build check (`pnpm build`) & initial commit push. |
+| **Phase 2** | Design System | Build `packages/ui` design tokens, global CSS, Space Grotesk/Inter fonts, reusable components. | Visual inspection against baseline template. |
+| **Phase 3** | Storefront Build | Develop dynamic homepage, `/shop`, `/product/[slug]`, `/our-story`, `/nutrition`, `/lab-reports`, `/climate-impact`, `/reviews`, `/faq`, `/contact`. | SSR page load verification & dynamic data rendering. |
+| **Phase 4** | Auth & Customer Account | Customer registration, JWT login, profile management, saved addresses, wishlist, order history. | Auth flow tests & session validation. |
+| **Phase 5** | Checkout, Payments & Shipping | Guest & user cart merge, server-side pricing & coupon calculation, Razorpay SDK integration, webhooks, Shiprocket serviceability API. | End-to-end sandbox checkout & signature verification. |
+| **Phase 6** | Orders & Tracking | Order creation, automated invoice/receipt generation, shipment tracking page (`/track-order`), cancellation & return workflows. | Order lifecycle testing & receipt rendering. |
+| **Phase 7** | Admin Panel & Inventory | Admin RBAC, sales dashboard, catalogue CRUD, inventory stock movements, batch traceability, CMS management, review moderation. | Admin panel CRUD verification & permissions testing. |
+| **Phase 8** | Subscription Engine | Recurring subscription creation, pause/resume/cancel, delivery frequency modification, founding-price locking. | Subscription lifecycle & renewal schedule tests. |
+| **Phase 9** | Analytics, Marketing & CMS | GA4 & Meta Pixel event emission (`add_to_cart`, `begin_checkout`, `purchase`), Waitlist capture, Admin CMS controls. | Analytics payload testing & CMS update verification. |
+| **Phase 10** | PWA & Mobile Optimization | Web App Manifest, Service Worker caching, offline support, mobile navigation & checkout polish. | Lighthouse PWA audit & mobile device testing. |
+| **Phase 11** | QA, Security & Launch | Security audit (HTTPS, rate limiting, header security), performance optimization, Hostinger production deployment. | End-to-end smoke testing & live domain verification. |
+
+---
+
+## 7. Next Steps for Phase 1
+
+Upon your approval of Phase 0, we will immediately initiate **PHASE 1: Foundation & Environments**:
+1. Initialize the monorepo using PNPM workspace structure.
+2. Initialize `apps/web` (Next.js), `apps/api` (NestJS), `apps/admin` (Next.js Dashboard), and shared packages (`ui`, `types`, `validation`, `utils`).
+3. Set up Prisma ORM with initial PostgreSQL schema models.
+4. Link the workspace to `https://github.com/idealersb2b-svg/nutrexia` and push the foundation commit.
+
+---
