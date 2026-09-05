@@ -12,7 +12,10 @@
     "db:studio": "npx --yes prisma studio --schema=./prisma/schema.prisma"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0"
+    "@prisma/client": "^5.22.0",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "pnpm": "^10.0.0",

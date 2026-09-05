@@ -1,6 +1,16 @@
 const path = require('path');
 const fs = require('fs');
 
+// Register standalone node_modules into Node.js module resolution search paths
+const standaloneNodeModules = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'node_modules');
+if (fs.existsSync(standaloneNodeModules)) {
+  module.paths.unshift(standaloneNodeModules);
+}
+const webNodeModules = path.join(__dirname, 'apps', 'web', 'node_modules');
+if (fs.existsSync(webNodeModules)) {
+  module.paths.unshift(webNodeModules);
+}
+
 // Ensure server binds to Hostinger provided PORT or 3000
 process.env.PORT = process.env.PORT || '3000';
 process.env.HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
