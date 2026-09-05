@@ -5,16 +5,18 @@ const fs = require('fs');
 process.env.PORT = process.env.PORT || '3000';
 process.env.HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
 
-// Primary path for Next.js monorepo standalone server
-const standalonePath = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'apps', 'web', 'server.js');
-const fallbackPath = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'server.js');
+// Standalone target directories
+const appStandaloneDir = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'apps', 'web');
+const rootStandaloneDir = path.join(__dirname, 'apps', 'web', '.next', 'standalone');
 
-if (fs.existsSync(standalonePath)) {
-  console.log(`🚀 Launching Next.js standalone server from ${standalonePath}`);
-  require(standalonePath);
-} else if (fs.existsSync(fallbackPath)) {
-  console.log(`🚀 Launching Next.js standalone server from ${fallbackPath}`);
-  require(fallbackPath);
+if (fs.existsSync(path.join(appStandaloneDir, 'server.js'))) {
+  console.log(`🚀 Changing working directory to ${appStandaloneDir}`);
+  process.chdir(appStandaloneDir);
+  require(path.join(appStandaloneDir, 'server.js'));
+} else if (fs.existsSync(path.join(rootStandaloneDir, 'server.js'))) {
+  console.log(`🚀 Changing working directory to ${rootStandaloneDir}`);
+  process.chdir(rootStandaloneDir);
+  require(path.join(rootStandaloneDir, 'server.js'));
 } else {
-  console.error('❌ Could not locate Next.js standalone server file.');
+  console.error('❌ Standalone server.js not found in expected paths.');
 }
