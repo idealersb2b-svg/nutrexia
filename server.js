@@ -1,40 +1,38 @@
 const path = require('path');
 const fs = require('fs');
 
-// Bind to Hostinger provided PORT or 3000
-const port = process.env.PORT || '3000';
-process.env.PORT = port;
-process.env.HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
-
-// Recursively search for Next.js standalone server.js
-function findStandaloneServer(dir, depth = 0) {
-  if (depth > 5 || !fs.existsSync(dir)) return null;
-  const files = fs.readdirSync(dir);
-  
-  if (files.includes('server.js') && dir !== __dirname) {
-    return path.join(dir, 'server.js');
-  }
-
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    try {
-      if (fs.statSync(fullPath).isDirectory() && file !== 'node_modules') {
-        const found = findStandaloneServer(fullPath, depth + 1);
-        if (found) return found;
-      }
-    } catch (e) {}
-  }
-  return null;
+// Ensure Node.js searches apps/web/node_modules for Next.js dependencies
+const webNodeModules = path.join(__dirname, 'apps', 'web', 'node_modules');
+if (fs.existsSync(webNodeModules)) {
+  module.paths.unshift(webNodeModules);
+}
+const standaloneNodeModules = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'node_modules');
+if (fs.existsSync(standaloneNodeModules)) {
+  module.paths.unshift(standaloneNodeModules);
 }
 
-const targetServer = findStandaloneServer(__dirname);
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
-if (targetServer) {
-  const targetDir = path.dirname(targetServer);
-  console.log(`🚀 Hostinger Launcher: Found standalone server at ${targetServer}`);
-  process.chdir(targetDir);
-  require(targetServer);
-} else {
-  console.error(`❌ Hostinger Launcher: Could not locate Next.js standalone server.js`);
-  console.error(`Root directory listing:`, fs.readdirSync(__dirname));
-}
+const dev = false;
+const port = parseInt(process.env.PORT || '3000', 10);
+const dir = path.join(__dirname, 'apps', 'web');
+
+console.log(`🚀 Starting Nutrexia Storefront from ${dir} on port ${port}...`);
+
+const app = next({ dev, dir });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true);
+    handle(req, res, parsedUrl);
+  }).listen(port, (err) => {
+    if (err) throw err;
+    console.log(`> Nutrexia Storefront live on port ${port}`);
+  });
+}).catch((err) => {
+  console.error('❌ Failed to start Next.js application:', err);
+  process.exit(1);
+});
