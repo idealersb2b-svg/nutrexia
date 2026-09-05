@@ -1,32 +1,26 @@
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 const path = require('path');
-const fs = require('fs');
 
-// Register standalone node_modules into Node.js module resolution search paths
-const standaloneNodeModules = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'node_modules');
-if (fs.existsSync(standaloneNodeModules)) {
-  module.paths.unshift(standaloneNodeModules);
-}
-const webNodeModules = path.join(__dirname, 'apps', 'web', 'node_modules');
-if (fs.existsSync(webNodeModules)) {
-  module.paths.unshift(webNodeModules);
-}
+const dev = false;
+const port = parseInt(process.env.PORT || '3000', 10);
+const dir = path.join(__dirname, 'apps', 'web');
 
-// Ensure server binds to Hostinger provided PORT or 3000
-process.env.PORT = process.env.PORT || '3000';
-process.env.HOSTNAME = process.env.HOSTNAME || '0.0.0.0';
+console.log(`Starting Nutrexia server from ${dir} on port ${port}...`);
 
-// Standalone target directories
-const appStandaloneDir = path.join(__dirname, 'apps', 'web', '.next', 'standalone', 'apps', 'web');
-const rootStandaloneDir = path.join(__dirname, 'apps', 'web', '.next', 'standalone');
+const app = next({ dev, dir });
+const handle = app.getRequestHandler();
 
-if (fs.existsSync(path.join(appStandaloneDir, 'server.js'))) {
-  console.log(`🚀 Changing working directory to ${appStandaloneDir}`);
-  process.chdir(appStandaloneDir);
-  require(path.join(appStandaloneDir, 'server.js'));
-} else if (fs.existsSync(path.join(rootStandaloneDir, 'server.js'))) {
-  console.log(`🚀 Changing working directory to ${rootStandaloneDir}`);
-  process.chdir(rootStandaloneDir);
-  require(path.join(rootStandaloneDir, 'server.js'));
-} else {
-  console.error('❌ Standalone server.js not found in expected paths.');
-}
+app.prepare().then(() => {
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true);
+    handle(req, res, parsedUrl);
+  }).listen(port, (err) => {
+    if (err) throw err;
+    console.log(`> Nutrexia Storefront live on port ${port}`);
+  });
+}).catch((err) => {
+  console.error('Failed to start Next.js application:', err);
+  process.exit(1);
+});
