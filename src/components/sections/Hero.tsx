@@ -24,8 +24,7 @@ export default function Hero() {
         </div>
         <div className="hero-visual">
           <div className="pack-shot">
-            {/* Placeholder image for the pack shot */}
-            <div style={{ width: 360, height: 480, background: 'var(--pea)', borderRadius: 18, boxShadow: '0 30px 60px rgba(0,0,0,0.35)', transform: 'rotate(-3deg)' }}></div>
+            <img src="/pack.png" alt="Nutrexia Rich Chocolate pouch" />
             <div className="float-chip chip-1"><span className="num">24.9g</span><span className="lbl">Protein / serving</span></div>
             <div className="float-chip chip-2"><span className="num">13.6</span><span className="lbl">Nutraceuticals</span></div>
             <div className="float-chip chip-3"><span className="num">0g</span><span className="lbl">Added sugar</span></div>

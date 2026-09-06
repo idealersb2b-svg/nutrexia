@@ -11,7 +11,7 @@ export default function Navbar() {
       <header>
         <nav>
           <Link href="/" className="brand">
-            <h2 style={{ color: 'var(--char)' }}>NUTREXIA</h2>
+            <img src="/logo.png" alt="Nutrexia logo" />
           </Link>
           <div className="navlinks">
             <a href="#audience">Who it's for</a>

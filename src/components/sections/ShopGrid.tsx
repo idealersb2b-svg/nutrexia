@@ -18,8 +18,7 @@ export default function ShopGrid() {
           {/* Trial Pack */}
           <div className="prod-card">
             <div className="prod-img">
-              {/* Placeholder */}
-              <div style={{ width: 120, height: 160, background: 'var(--char-soft)', borderRadius: 8 }}></div>
+              <img src="/pack.png" alt="Nutrexia trial sachets" style={{ maxWidth: 120, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
             </div>
             <div className="prod-body">
               <h4>Trial Pack</h4>
@@ -44,8 +43,7 @@ export default function ShopGrid() {
           <div className="prod-card best">
             <div className="prod-ribbon">Most Popular</div>
             <div className="prod-img">
-              {/* Placeholder */}
-              <div style={{ width: 120, height: 160, background: 'var(--pea)', borderRadius: 8 }}></div>
+              <img src="/pack.png" alt="Nutrexia 1kg pouch" style={{ maxWidth: 140, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
             </div>
             <div className="prod-body">
               <h4>1kg Foundation Pouch</h4>
@@ -70,8 +68,7 @@ export default function ShopGrid() {
           <div className="prod-card">
             <div className="prod-ribbon" style={{ background: 'var(--char)', color: 'var(--cream)' }}>Lock Price</div>
             <div className="prod-img">
-              {/* Placeholder */}
-              <div style={{ width: 120, height: 160, background: 'var(--char-soft)', borderRadius: 8 }}></div>
+              <img src="/pack.png" alt="Nutrexia quarterly subscription" style={{ maxWidth: 140, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
             </div>
             <div className="prod-body">
               <h4>Quarterly Subscription</h4>

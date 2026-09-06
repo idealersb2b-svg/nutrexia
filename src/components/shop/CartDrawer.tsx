@@ -22,8 +22,7 @@ export default function CartDrawer() {
         {/* Placeholder for items */}
         <div className="drawer-items">
           <div className="d-item">
-            {/* Using a gray placeholder box for the image until real assets are available */}
-            <div style={{ width: 48, height: 48, background: 'var(--line)', borderRadius: 10, flexShrink: 0 }} />
+            <img src="/pack.png" alt="Item" />
             <div>
               <div className="di-name">Trial Pack</div>
               <div className="di-meta">5 × 30g sachets</div>

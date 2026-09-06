@@ -3,8 +3,7 @@ export default function Footer() {
     <footer>
       <div className="wrap foot-grid">
         <div className="foot-brand">
-          {/* We will replace with real logo when available */}
-          <h2 style={{ color: 'var(--cream)', marginBottom: '14px' }}>NUTREXIA</h2>
+          <img src="/logo.png" alt="Nutrexia logo" />
           <p>The climate-smart breakfast that keeps up with you. Sourced with respect, tested with rigor, blended for performance.</p>
         </div>
         <div className="foot-col">
