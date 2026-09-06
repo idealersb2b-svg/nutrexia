@@ -1,5 +1,14 @@
 import type { Metadata } from 'next';
+import { ReactNode } from 'react';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
+
+import { UIProvider } from '../context/UIContext';
+import Ticker from '../components/layout/Ticker';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import CartDrawer from '../components/shop/CartDrawer';
+import Toast from '../components/ui/Toast';
 
 export const metadata: Metadata = {
   title: 'NUTREXIA — Climate-Smart Plant Protein | Carbin Naturals',
@@ -11,15 +20,23 @@ export const viewport = {
   themeColor: '#FAF6EA'
 };
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' });
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+        <UIProvider>
+          <Ticker />
+          <Navbar />
+          <CartDrawer />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <Toast />
+        </UIProvider>
       </body>
     </html>
   );
