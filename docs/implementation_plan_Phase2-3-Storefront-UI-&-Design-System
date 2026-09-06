@@ -1,0 +1,78 @@
+# Phase 2 & 3: Storefront UI & Design System
+
+## Goal
+Transform the static `Nutrexia_Template_Claude.html` into a fully modular, responsive Next.js storefront (Phase 2 & 3). This will act as the customer-facing frontend (`nutrexia.in`), replacing the current Next.js placeholder page.
+
+## Proposed Architecture
+
+Instead of one massive `page.tsx`, we will break the design into maintainable React components. We will use vanilla CSS with CSS variables (no Tailwind, per your previous preferences) to match the exact aesthetic of the HTML template.
+
+### 1. Global Styles & Design System
+#### [MODIFY] src/app/globals.css
+- Port all CSS variables (`--pea`, `--gold`, etc.) from the HTML template.
+- Add global resets, typography settings (Inter & Space Grotesk), and utility classes (`.wrap`, `.btn`, etc.).
+- Add keyframe animations (`scroll`, `pulse`, `fadein`).
+
+### 2. Layout Components (Appears on every page)
+#### [MODIFY] src/app/layout.tsx
+- Integrate Google Fonts (Inter & Space Grotesk).
+- Add the `<Ticker />`, `<Navbar />`, `<CartDrawer />`, and `<Footer />` components.
+
+#### [NEW] src/components/layout/Ticker.tsx
+- Scrolling announcement bar at the very top.
+
+#### [NEW] src/components/layout/Navbar.tsx
+- Sticky header with logo, navigation links, and Cart button.
+
+#### [NEW] src/components/layout/Footer.tsx
+- Bottom footer with links and branding.
+
+#### [NEW] src/components/shop/CartDrawer.tsx
+- Slide-out cart overlay (UI only for now, logic comes in the commerce phase).
+
+### 3. Homepage Sections
+We will create a `src/components/sections/` directory to house the homepage modules.
+
+#### [NEW] src/components/sections/Hero.tsx
+- The hero section with the diagonal background, value props, and floating chips.
+
+#### [NEW] src/components/sections/AudienceTabs.tsx
+- The Gen Z / Moms / Fitness interactive tabs and content panels.
+
+#### [NEW] src/components/sections/Formulation.tsx
+- 4-column grid explaining the ingredients (Core grains, Protein matrix, etc.).
+
+#### [NEW] src/components/sections/NutritionTabs.tsx
+- The dark-themed nutrition facts with interactive tabs (Vitamins, Minerals, Amino Acids, Safety).
+
+#### [NEW] src/components/sections/Comparison.tsx
+- The table comparing Nutrexia to other brands.
+
+#### [NEW] src/components/sections/FomoDrop.tsx
+- The "Founding pricing" countdown timer and stock bar.
+
+#### [NEW] src/components/sections/ShopGrid.tsx
+- The product cards (Trial Pack, 1kg Pouch, Subscription).
+
+#### [NEW] src/components/sections/StoryAndClimate.tsx
+- The brand story section and the green climate impact stats block.
+
+#### [NEW] src/components/sections/TestimonialsAndFaq.tsx
+- Customer reviews grid and interactive FAQ accordion.
+
+#### [NEW] src/components/sections/Newsletter.tsx
+- Email signup block.
+
+### 4. Page Assembly
+#### [MODIFY] src/app/page.tsx
+- Import and stack all the section components to form the complete homepage experience.
+
+## Open Questions
+> [!IMPORTANT]
+> 1. **Images & Logos**: The HTML template uses base64 placeholders (`{{LOGO}}`, `{{PACK}}`). For now, I will use placeholder images (from Unsplash or generic placeholders) until you provide the final brand assets. Is that acceptable?
+> 2. **Mobile Nav**: The HTML template has a hamburger menu icon (`.burger`) but no CSS/JS for the mobile menu dropdown. Should I build a slide-out mobile menu?
+
+## Verification Plan
+1. **Build check**: Run `npm run build` to ensure all React components compile without errors.
+2. **Visual QA**: Start the dev server and verify the homepage perfectly matches the provided HTML template across desktop and mobile viewports.
+3. **Interactivity**: Verify all tabs, accordions, and the cart drawer open/close smoothly.
