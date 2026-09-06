@@ -6,6 +6,7 @@ const next = require('next');
 // This replaces the standalone server.js to ensure compatibility with
 // Hostinger's multi-worker (lsnode) environment.
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 3000;
