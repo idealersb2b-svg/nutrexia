@@ -9,6 +9,21 @@ const nextConfig = {
         hostname: '**'
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'admin.nutrexia.in',
+          },
+        ],
+        destination: 'https://nutrexia.in/admin/:path*',
+        permanent: true,
+      },
+    ];
   }
 };
 
