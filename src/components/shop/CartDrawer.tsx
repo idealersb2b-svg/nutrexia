@@ -1,6 +1,6 @@
 'use client';
 
-import { useUI } from '@/context/UIContext';
+import { useUI } from '../../context/UIContext';
 
 export default function CartDrawer() {
   const { isCartOpen, closeCart } = useUI();

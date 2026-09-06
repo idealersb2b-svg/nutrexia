@@ -1,6 +1,6 @@
 'use client';
 
-import { useUI } from '@/context/UIContext';
+import { useUI } from '../../context/UIContext';
 import Link from 'next/link';
 
 export default function Navbar() {
