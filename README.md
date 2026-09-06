@@ -1,56 +1,55 @@
-# Nutrexia D2C E-Commerce Monorepo
+# Nutrexia D2C E-Commerce
 
 Climate-Smart Plant Protein D2C E-Commerce Web Application built for **Nutrexia** by **CM-eServices**.
 
-## Architecture & Monorepo Structure
+## Tech Stack
 
-- **`apps/web`**: Next.js 15 Storefront + Progressive Web App (PWA)
-- **`apps/api`**: NestJS Node.js Backend API (Commerce Engine, Auth, Razorpay, Shiprocket)
-- **`apps/admin`**: Next.js Admin Panel (Catalogue, Inventory, Orders, CMS)
-- **`packages/ui`**: Shared Design System (Nutrexia theme components, typography, layout)
-- **`packages/types`**: Shared TypeScript Interfaces & Data Models
-- **`packages/validation`**: Shared Zod Validation Schemas
-- **`packages/utils`**: Shared Helpers & Currency Formatters
-- **`prisma/`**: PostgreSQL Database Schema & Migrations
+- **Framework**: Next.js 15 (App Router) with React 19
+- **Language**: TypeScript 5
+- **Database**: PostgreSQL via Prisma ORM (Supabase hosted)
+- **Styling**: Vanilla CSS with custom design tokens
+- **Deployment**: Hostinger Managed Node.js (standalone output)
 
-## Prerequisites
+## Getting Started
 
-- Node.js `v18.0.0` or higher (Tested on Node `v24.15.0`)
-- PNPM `v8.0.0` or higher (Tested on PNPM `v11.13.0`)
-- PostgreSQL database instance
+```bash
+# Install dependencies
+npm install
 
-## Local Development Setup
+# Generate Prisma client
+npm run db:generate
 
-1. **Clone & Install Dependencies**:
-   ```bash
-   git clone https://github.com/idealersb2b-svg/nutrexia.git
-   cd nutrexia
-   pnpm install
-   ```
+# Start dev server
+npm run dev
+```
 
-2. **Environment Variables**:
-   Copy `.env.example` to `.env` in the root and configure database credentials:
-   ```bash
-   cp .env.example .env
-   ```
+Open [http://localhost:3000](http://localhost:3000).
 
-3. **Database Migration & Prisma Client**:
-   ```bash
-   pnpm db:generate
-   pnpm db:migrate
-   ```
+## Production Build
 
-4. **Run All Apps in Development Mode**:
-   ```bash
-   pnpm dev
-   ```
-   - Storefront: `http://localhost:3000`
-   - Admin Panel: `http://localhost:3001`
-   - Backend API: `http://localhost:4000`
+```bash
+npm run build
+node server.js
+```
 
-## Production Deployment (Hostinger)
+## Project Structure
 
-The repository is built for deployment on Hostinger Node.js / VPS hosting environment.
+```
+├── src/
+│   ├── app/          # Next.js App Router pages & layouts
+│   └── types/        # Domain types & interfaces
+├── prisma/
+│   └── schema.prisma # Database schema
+├── server.js         # Hostinger standalone launcher
+├── next.config.mjs   # Next.js configuration
+└── package.json
+```
 
----
-© 2026 Carbin Naturals Pvt Ltd / IDEALERS B2B PVT LTD. All rights reserved.
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in your credentials.
+
+## Deployment
+
+This project auto-deploys to Hostinger on push to `master`:
+- **Storefront**: [https://nutrexia.in](https://nutrexia.in)

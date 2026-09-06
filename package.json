@@ -1,29 +1,32 @@
 {
-  "name": "nutrexia-monorepo",
+  "name": "nutrexia-web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx --yes pnpm --recursive --parallel run dev",
-    "build": "npx --yes pnpm --recursive run build",
-    "lint": "npx --yes pnpm --recursive run lint",
-    "typecheck": "npx --yes pnpm --recursive run typecheck",
-    "db:generate": "npx --yes prisma generate --schema=./prisma/schema.prisma",
-    "db:migrate": "npx --yes prisma migrate dev --schema=./prisma/schema.prisma",
-    "db:studio": "npx --yes prisma studio --schema=./prisma/schema.prisma"
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "db:migrate": "prisma migrate dev --schema=./prisma/schema.prisma",
+    "db:studio": "prisma studio --schema=./prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "next": "^15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "pnpm": "^10.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "prisma": "^5.22.0",
     "typescript": "^5.7.0"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=8.0.0"
+    "node": ">=18.0.0"
   }
 }
