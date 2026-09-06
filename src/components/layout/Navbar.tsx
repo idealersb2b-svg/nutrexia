@@ -4,7 +4,7 @@ import { useUI } from '../../context/UIContext';
 import Link from 'next/link';
 
 export default function Navbar() {
-  const { openCart, isMobileMenuOpen, openMobileMenu, closeMobileMenu } = useUI();
+  const { openCart, isMobileMenuOpen, openMobileMenu, closeMobileMenu, cartCount } = useUI();
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function Navbar() {
           </div>
           <div className="nav-right">
             <button className="cart-btn" onClick={openCart}>
-              🛒 Cart <span className="cart-count">1</span>
+              🛒 Cart {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
             </button>
             <div className="burger" onClick={openMobileMenu}>☰</div>
           </div>

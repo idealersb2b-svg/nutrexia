@@ -1,9 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { useUI } from '../../context/UIContext';
 
 export default function ShopGrid() {
-  const { openCart } = useUI();
+  const { addToCart, openCart } = useUI();
+  
+  const [qtyTrial, setQtyTrial] = useState(1);
+  const [qtyPouch, setQtyPouch] = useState(1);
+
+  const handleAddToCart = (id: string, name: string, meta: string, price: number, quantity: number, image: string) => {
+    addToCart({ id, name, meta, price, quantity, image });
+    openCart();
+  };
 
   return (
     <section id="shop">
@@ -30,11 +39,16 @@ export default function ShopGrid() {
               <div className="prod-meta">₹49.80 / serving</div>
               <div className="qty-add">
                 <div className="qty-box">
-                  <button>-</button>
-                  <span>1</span>
-                  <button>+</button>
+                  <button onClick={() => setQtyTrial(Math.max(1, qtyTrial - 1))}>-</button>
+                  <span>{qtyTrial}</span>
+                  <button onClick={() => setQtyTrial(qtyTrial + 1)}>+</button>
                 </div>
-                <button className="add-btn" onClick={openCart}>Add to Cart</button>
+                <button 
+                  className="add-btn" 
+                  onClick={() => handleAddToCart('trial', 'Trial Pack', '5 × 30g sachets', 249, qtyTrial, '/pack.png')}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
@@ -55,11 +69,16 @@ export default function ShopGrid() {
               <div className="prod-meta">₹50.00 / serving</div>
               <div className="qty-add">
                 <div className="qty-box">
-                  <button>-</button>
-                  <span>1</span>
-                  <button>+</button>
+                  <button onClick={() => setQtyPouch(Math.max(1, qtyPouch - 1))}>-</button>
+                  <span>{qtyPouch}</span>
+                  <button onClick={() => setQtyPouch(qtyPouch + 1)}>+</button>
                 </div>
-                <button className="add-btn" onClick={openCart}>Add to Cart</button>
+                <button 
+                  className="add-btn" 
+                  onClick={() => handleAddToCart('pouch-1kg', '1kg Foundation Pouch', '33 servings', 1650, qtyPouch, '/pack.png')}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
@@ -79,7 +98,13 @@ export default function ShopGrid() {
               </div>
               <div className="prod-meta">₹44.90 / serving (Best Value)</div>
               <div className="qty-add">
-                <button className="add-btn" style={{ width: '100%' }} onClick={openCart}>Subscribe</button>
+                <button 
+                  className="add-btn" 
+                  style={{ width: '100%' }} 
+                  onClick={() => handleAddToCart('sub-quarterly', 'Quarterly Subscription', '3 × 1kg Pouches', 4450, 1, '/pack.png')}
+                >
+                  Subscribe
+                </button>
               </div>
             </div>
           </div>

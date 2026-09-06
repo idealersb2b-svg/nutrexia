@@ -3,7 +3,7 @@
 import { useUI } from '../../context/UIContext';
 
 export default function CartDrawer() {
-  const { isCartOpen, closeCart } = useUI();
+  const { isCartOpen, closeCart, cartItems, cartTotal, removeFromCart, updateQuantity } = useUI();
 
   return (
     <>
@@ -14,30 +14,41 @@ export default function CartDrawer() {
           <button className="drawer-close" onClick={closeCart}>×</button>
         </div>
         
-        {/* Placeholder for empty state */}
-        <div className="drawer-empty" style={{ display: 'none' }}>
-          Your cart is currently empty.
-        </div>
-
-        {/* Placeholder for items */}
-        <div className="drawer-items">
-          <div className="d-item">
-            <img src="/pack.png" alt="Item" />
-            <div>
-              <div className="di-name">Trial Pack</div>
-              <div className="di-meta">5 × 30g sachets</div>
-              <button className="di-remove">Remove</button>
-            </div>
-            <div className="di-price">₹249</div>
+        {cartItems.length === 0 ? (
+          <div className="drawer-empty">
+            Your cart is currently empty.
           </div>
-        </div>
+        ) : (
+          <div className="drawer-items">
+            {cartItems.map((item) => (
+              <div className="d-item" key={item.id}>
+                <img src={item.image} alt={item.name} />
+                <div style={{ flex: 1 }}>
+                  <div className="di-name">{item.name}</div>
+                  <div className="di-meta">{item.meta}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
+                    <div className="qty-box" style={{ height: '30px' }}>
+                      <button style={{ width: '24px', height: '100%', fontSize: '14px' }} onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                      <span style={{ width: '20px', fontSize: '13px' }}>{item.quantity}</span>
+                      <button style={{ width: '24px', height: '100%', fontSize: '14px' }} onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                    </div>
+                    <button className="di-remove" style={{ marginTop: 0 }} onClick={() => removeFromCart(item.id)}>Remove</button>
+                  </div>
+                </div>
+                <div className="di-price">₹{(item.price * item.quantity).toLocaleString('en-IN')}</div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="drawer-foot">
           <div className="drawer-sub">
             <span>Subtotal</span>
-            <span>₹249</span>
+            <span>₹{cartTotal.toLocaleString('en-IN')}</span>
           </div>
-          <button className="checkout-btn">Checkout</button>
+          <button className="checkout-btn" onClick={() => alert('Checkout flow not implemented yet!')} disabled={cartItems.length === 0}>
+            Checkout
+          </button>
           <div className="founding-note">Founding member pricing applied.</div>
         </div>
       </div>

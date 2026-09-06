@@ -5,6 +5,7 @@ import Ticker from '../../components/layout/Ticker';
 import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import CartDrawer from '../../components/shop/CartDrawer';
+import Toast from '../../components/ui/Toast';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' });
@@ -20,6 +21,7 @@ export default function StorefrontLayout({ children }: { children: ReactNode }) 
           {children}
         </main>
         <Footer />
+        <Toast />
       </UIProvider>
     </div>
   );

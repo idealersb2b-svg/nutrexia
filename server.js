@@ -12,7 +12,7 @@ const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 3000;
 
 // Initialize Next.js
-const app = next({ dev, hostname, port });
+const app = next({ dev, hostname, port, dir: __dirname });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
