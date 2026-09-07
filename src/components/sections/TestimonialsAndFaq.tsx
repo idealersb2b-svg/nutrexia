@@ -65,34 +65,57 @@ export default function TestimonialsAndFaq() {
             <h2>Frequently Asked Questions</h2>
           </div>
           <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            
-            <div className={`faq-item ${openFaq === 0 ? 'open' : ''}`}>
-              <div className="faq-q" onClick={() => toggleFaq(0)}>
-                Is it safe for diabetics? <span className="plus">+</span>
+            {[
+              {
+                q: "What is Cleantech Mart and how does it work?",
+                a: "Cleantech Mart is the world’s first full‑stack sustainability intelligence platform, combining marketplace, AI carbon scoring, verification, and ESG procurement."
+              },
+              {
+                q: "How does Cleantech Mart help reduce Scope‑3 corporate emissions?",
+                a: "Our Gemini‑powered CM Carbon Rating engine auto‑generates LCA‑aligned carbon scores, enabling corporates to achieve verified Scope‑3 decarbonization."
+              },
+              {
+                q: "What types of products and services are listed on Cleantech Mart?",
+                a: "We curate 15+ categories including solar, water, waste, air, organic food, eco‑garments, bamboo, millets, and sustainable personal care."
+              },
+              {
+                q: "How does Cleantech Mart eliminate greenwashing?",
+                a: "Every product receives a verified sustainability report and “CMSR- Cleantech Mart Sustainability Report and Score” backed by certification procedures, and AI powered LCA documentation."
+              },
+              {
+                q: "Can rural SHGs and FPOs sell on Cleantech Mart?",
+                a: "Yes. We digitize rural green supply chains, giving SHGs/FPOs direct access to corporate buyers through our ESG Procurement Hub."
+              },
+              {
+                q: "What makes Cleantech Mart different from IndiaMART or TradeIndia?",
+                a: "Unlike generic B2B marketplaces, we provide AI‑powered carbon scoring, verified procurement, and compliance alignment with BRSR mandates. We also help Tier 2/3 and Rural sellers and manufacturers in their Digital Transformation (cm-eservices.com)"
+              },
+              {
+                q: "How does Cleantech Mart support corporate ESG compliance?",
+                a: "Our platform maps directly to BRSR Core disclosure requirements, offering verified suppliers and procurement analytics."
+              },
+              {
+                q: "What revenue streams sustain Cleantech Mart?",
+                a: "We generate revenue through marketplace fees, verification services, ESG data licensing, and digital transformation/advertising for cleantech sellers."
+              },
+              {
+                q: "Is Cleantech Mart available globally or only in India?",
+                a: "We are expanding from India into international markets, offering carbon rating, consultancy, and blockchain‑enabled traceability for global buyers."
+              },
+              {
+                q: "How does Cleantech Mart contribute to a Net‑Zero future?",
+                a: "By connecting verified green supply to demand, reducing Scope‑3 emissions, digitizing rural producers, and evolving into full‑stack climate infrastructure."
+              }
+            ].map((faq, index) => (
+              <div key={index} className={`faq-item ${openFaq === index ? 'open' : ''}`}>
+                <div className="faq-q" onClick={() => toggleFaq(index)}>
+                  {faq.q} <span className="plus">+</span>
+                </div>
+                <div className="faq-a">
+                  <p>{faq.a}</p>
+                </div>
               </div>
-              <div className="faq-a">
-                <p>Yes. Nutrexia contains exactly 0g of added sugar and uses Stevia (a plant-based zero-calorie sweetener). The core carb source is finger millet, which has a very low Glycemic Index, meaning it won't cause sudden blood sugar spikes.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaq === 1 ? 'open' : ''}`}>
-              <div className="faq-q" onClick={() => toggleFaq(1)}>
-                How does it mix without a blender? <span className="plus">+</span>
-              </div>
-              <div className="faq-a">
-                <p>We use a specialized micro-milling process on the millets and pea protein so it mixes instantly in a standard shaker bottle. No blender required. Just add 250ml of cold water or milk, shake for 10 seconds, and drink.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaq === 2 ? 'open' : ''}`}>
-              <div className="faq-q" onClick={() => toggleFaq(2)}>
-                Why is it a "Founding Batch"? <span className="plus">+</span>
-              </div>
-              <div className="faq-a">
-                <p>We source our millets directly from a specific cooperative of dryland farmers. We only manufacture what we can sustainably source. This first 1000kg batch is our "Founding Batch" — and anyone who buys it locks in the discounted introductory pricing for life on their subscriptions.</p>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
