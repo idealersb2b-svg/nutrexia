@@ -75,18 +75,6 @@ export default function TestimonialsAndFaq() {
                 a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
               },
               {
-                q: "What if I have a soya, gluten or nut allergy?",
-                a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
-              },
-              {
-                q: "What if I have a soya, gluten or nut allergy?",
-                a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
-              },
-              {
-                q: "How is this different from a regular whey or generic pea protein?",
-                a: "Nutrexia pairs a complete pea + roasted chana protein matrix with millet-based prebiotic fibre, turmeric and vitamin fortification — designed as a full breakfast, not just an isolated macro. See the full comparison table above."
-              },
-              {
                 q: "How is this different from a regular whey or generic pea protein?",
                 a: "Nutrexia pairs a complete pea + roasted chana protein matrix with millet-based prebiotic fibre, turmeric and vitamin fortification — designed as a full breakfast, not just an isolated macro. See the full comparison table above."
               },
