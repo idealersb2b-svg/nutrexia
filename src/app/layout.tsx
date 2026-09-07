@@ -9,6 +9,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import CartDrawer from '../components/shop/CartDrawer';
 import Toast from '../components/ui/Toast';
+import SocialProofPopup from '../components/ui/SocialProofPopup';
 
 export const metadata: Metadata = {
   title: 'NUTREXIA — Climate-Smart Plant Protein | Carbin Naturals',
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </main>
           <Footer />
           <Toast />
+          <SocialProofPopup />
         </UIProvider>
       </body>
     </html>
