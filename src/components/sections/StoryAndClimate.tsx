@@ -5,7 +5,7 @@ export default function StoryAndClimate() {
         <div className="wrap story">
           <div className="story-img">
             {/* Placeholder image for farming/founders */}
-            <img src="https://images.unsplash.com/photo-1595808726597-51473fa58a69?q=80&w=800&auto=format&fit=crop" alt="Farmers harvesting millets" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 20 }} />
+            <img src="/origin.jpeg" alt="Farmers harvesting millets" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 20 }} />
             <div className="story-badge">Sourced from 1,200+<br/>dryland farmers</div>
           </div>
           <div className="story-copy">
