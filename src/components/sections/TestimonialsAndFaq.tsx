@@ -67,12 +67,32 @@ export default function TestimonialsAndFaq() {
           <div style={{ maxWidth: 800, margin: '0 auto' }}>
             {[
               {
-                q: "What is Cleantech Mart and how does it work?",
-                a: "Cleantech Mart is the world’s first full‑stack sustainability intelligence platform, combining marketplace, AI carbon scoring, verification, and ESG procurement."
+                q: "Is Nutrexia suitable for kids and non-diabetic family members?",
+                a: "Yes — it has zero added sugar, sweetened only with monk fruit, and is formulated as a non-diabetic-friendly breakfast option. As with any new food for young children, we recommend starting with a half serving."
               },
               {
-                q: "How does Cleantech Mart help reduce Scope‑3 corporate emissions?",
-                a: "Our Gemini‑powered CM Carbon Rating engine auto‑generates LCA‑aligned carbon scores, enabling corporates to achieve verified Scope‑3 decarbonization."
+                q: "What if I have a soya, gluten or nut allergy?",
+                a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
+              },
+              {
+                q: "What if I have a soya, gluten or nut allergy?",
+                a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
+              },
+              {
+                q: "What if I have a soya, gluten or nut allergy?",
+                a: "Our latest batch tested below detectable limits for peanut, gluten, mustard, milk, soya and sesame allergens via independent lab panels. If you have a severe allergy, please review the full lab report linked in your order confirmation before consuming."
+              },
+              {
+                q: "How is this different from a regular whey or generic pea protein?",
+                a: "Nutrexia pairs a complete pea + roasted chana protein matrix with millet-based prebiotic fibre, turmeric and vitamin fortification — designed as a full breakfast, not just an isolated macro. See the full comparison table above."
+              },
+              {
+                q: "How is this different from a regular whey or generic pea protein?",
+                a: "Nutrexia pairs a complete pea + roasted chana protein matrix with millet-based prebiotic fibre, turmeric and vitamin fortification — designed as a full breakfast, not just an isolated macro. See the full comparison table above."
+              },
+              {
+                q: "What happens after the founding batch sells out?",
+                a: "Pricing moves to standard retail (₹68/serving) for future batches. Anyone who orders during the founding window keeps that price locked on their subscription for as long as it stays active."
               },
               {
                 q: "What types of products and services are listed on Cleantech Mart?",

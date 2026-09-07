@@ -1,0 +1,25 @@
+# Phase 3 Walkthrough: Interactivity
+
+The frontend is now fully alive! We have hooked up the React Context state to manage the Cart, Toasts, and Mobile Menu, as well as implemented real-time effects like the countdown timer.
+
+## What was implemented
+
+### 🛒 Global Cart State
+The core functionality of the shop is now driven by `UIContext`.
+- **Adding Items:** You can now increment quantities in the `ShopGrid` and click "Add to Cart". It will push the correct product to the Cart state.
+- **Dynamic Badge:** The Navbar cart badge now dynamically tallies up all item quantities in the cart.
+- **Cart Drawer:** The side cart drawer now renders the actual items added, calculates the live subtotal, and allows you to adjust quantities or remove items entirely.
+
+### 🔔 Toast Notifications
+- We added a global `<Toast />` component that slides up from the bottom of the screen.
+- Whenever you add an item to the cart, you get a slick "Added [Product] to cart" notification that automatically dismisses after 3 seconds.
+
+### ⏱️ FOMO Countdown Timer
+- The "Founding member window" in the FOMO drop section now uses a `useEffect` interval to count down in real-time, ticking off the seconds on the screen.
+
+### 📱 Mobile Navigation
+- The hamburger menu (☰) in the Navbar now correctly triggers the mobile menu overlay and slides the menu drawer in from the left on mobile devices.
+
+## Validation Results
+- Verified local Next.js build (`npm run build`) compiles successfully without any TypeScript or ESLint errors.
+- Commited and pushed to `master` (commit `13baaf2`).

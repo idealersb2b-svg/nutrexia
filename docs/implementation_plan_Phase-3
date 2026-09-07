@@ -1,0 +1,57 @@
+# Phase 3: Interactivity and Cart State Management
+
+The structural layout and visual UI of the Nutrexia storefront are complete and deployed! Now, in Phase 3, we will breathe life into the static components by implementing real functional state management. 
+
+## Proposed Changes
+
+We will introduce a global Cart state, a real-time countdown timer for the FOMO drop, toast notifications for user feedback, and a functional mobile navigation menu.
+
+---
+
+### UI State and Context
+
+#### [MODIFY] [UIContext.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/context/UIContext.tsx)
+- Enhance `UIContext` to include full Cart state management (`cartItems`, `addToCart`, `removeFromCart`, `updateQuantity`, `cartTotal`).
+- Add state for Toast notifications (`toastMessage`, `showToast`).
+- Add state for Mobile Menu (`isMobileMenuOpen`, `toggleMobileMenu`).
+
+---
+
+### Shop Components
+
+#### [MODIFY] [CartDrawer.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/components/shop/CartDrawer.tsx)
+- Connect to `UIContext` to render actual `cartItems`.
+- Implement remove buttons and dynamic subtotal calculation.
+- Display empty state when the cart has 0 items.
+
+#### [MODIFY] [ShopGrid.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/components/sections/ShopGrid.tsx)
+- Wire up the "Add to Cart" and "Subscribe" buttons to trigger `addToCart` with specific product objects.
+- Wire up the +/- quantity selectors to local state before adding to cart.
+- Trigger a toast notification when an item is added.
+
+---
+
+### Layout and Interactive Sections
+
+#### [MODIFY] [Navbar.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/components/layout/Navbar.tsx)
+- Update the Cart badge to show the actual sum of item quantities.
+- Wire up the Hamburger `<button className="burger">` to toggle the mobile menu.
+- Implement the Mobile Menu slide-out drawer (using `.mobile-menu` CSS classes).
+
+#### [MODIFY] [FomoDrop.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/components/sections/FomoDrop.tsx)
+- Implement a `useEffect` interval to drive a real countdown timer (e.g., counting down 14 days, 6 hours, etc.).
+
+#### [NEW] [Toast.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/components/ui/Toast.tsx)
+- Create a global Toast component that listens to `UIContext` and slides up from the bottom when `showToast` is triggered.
+
+## Verification Plan
+
+### Automated Tests
+- N/A (Manual visual testing required).
+
+### Manual Verification
+- Clicking "Add to Cart" increments the cart badge.
+- Opening the cart shows the added item and correct subtotal.
+- Removing the item clears the cart.
+- The countdown timer ticks down by 1 second every second.
+- The mobile menu opens and closes correctly on small screens.
