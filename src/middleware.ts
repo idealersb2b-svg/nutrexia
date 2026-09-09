@@ -1,36 +1,67 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+export async function middleware(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({
+    request,
+  })
 
-  // Only protect /admin routes (excluding /admin/login)
-  if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-    // Check for our placeholder auth cookie
-    const hasToken = request.cookies.has('nutrexia-admin-token');
-
-    if (!hasToken) {
-      // Redirect to login if unauthenticated
-      const url = request.nextUrl.clone();
-      url.pathname = '/admin/login';
-      return NextResponse.redirect(url);
-    }
+  // Skip supabase auth initialization if env vars are missing
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return supabaseResponse
   }
 
-  return NextResponse.next();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+          supabaseResponse = NextResponse.next({
+            request,
+          })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // Protect /admin routes (except /admin/login)
+  if (
+    !user &&
+    request.nextUrl.pathname.startsWith('/admin') &&
+    !request.nextUrl.pathname.startsWith('/admin/login')
+  ) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/admin/login'
+    return NextResponse.redirect(url)
+  }
+
+  // Redirect logged-in users away from /admin/login to /admin
+  if (
+    user &&
+    request.nextUrl.pathname.startsWith('/admin/login')
+  ) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/admin'
+    return NextResponse.redirect(url)
+  }
+
+  return supabaseResponse
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
-};
+}

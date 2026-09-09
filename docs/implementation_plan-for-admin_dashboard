@@ -1,0 +1,44 @@
+# Phase 5: Admin Dashboard
+
+We will build a sleek, premium, and fully responsive Admin Dashboard to manage Nutrexia's products, orders, and customers.
+
+## Open Questions & Important Notes
+
+> [!WARNING]
+> **Hostinger Deployment Quirk:** 
+> Because the Admin Dashboard requires a completely different layout (Sidebar instead of the Storefront Navbar/Footer), we must use Next.js "Route Groups" (moving the storefront files into a `(storefront)` folder). 
+> As we discovered earlier, Hostinger sometimes fails to delete old files during deployments. When we deploy this, you may need to manually delete the old `src/app/page.tsx` and `src/app/layout.tsx` from your Hostinger File Manager to prevent conflicts. Are you comfortable with this?
+
+> [!NOTE]
+> **Questions for you:**
+> 1. **Authentication:** Should we build the Admin Dashboard UI first and mock the data, or should we immediately integrate Supabase Authentication so you have to log in to see it?
+> 2. **Initial Pages:** I plan to build a general `Overview` page and a `Products` management page first. Does that sound good?
+
+## Proposed Changes
+
+### 1. Route Reorganization
+We will reorganize the App Router to support multiple distinct layouts without sharing the storefront Navbar/Footer on the admin pages.
+
+#### [NEW] [src/app/(storefront)/layout.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/(storefront)/layout.tsx)
+- Move `Navbar`, `Ticker`, `CartDrawer`, `Footer`, etc. here.
+#### [MODIFY] [src/app/(storefront)/page.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/(storefront)/page.tsx)
+- Move the storefront homepage here.
+#### [MODIFY] [src/app/layout.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/layout.tsx)
+- Strip down to just the raw `<html>`, `<body>`, and `<UIProvider>`.
+
+### 2. Admin Layout & Styling
+We will create a completely new CSS file and layout specifically for the admin panel to keep it isolated from the storefront styles.
+
+#### [NEW] [src/app/admin/layout.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/admin/layout.tsx)
+- Build a persistent sidebar navigation (Overview, Orders, Products, Customers) and a top header.
+#### [NEW] [src/app/admin/admin.css](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/admin/admin.css)
+- Write fresh, modern vanilla CSS for the admin dashboard (using a clean, corporate dashboard aesthetic with soft shadows and grid layouts).
+
+### 3. Admin Pages
+#### [NEW] [src/app/admin/page.tsx](file:///d:/Shravan/nutrexia/nutrexia-website/src/app/admin/page.tsx)
+- The Overview dashboard showing high-level metrics (Total Revenue, Active Orders, Low Stock Alerts) pulled from the database.
+
+## Verification Plan
+1. Move the route files and run `npm run dev` to ensure no routing conflicts exist locally.
+2. Navigate to `localhost:3000` to verify the storefront still works perfectly.
+3. Navigate to `localhost:3000/admin` to verify the new Admin Dashboard loads with its own distinct sidebar layout.

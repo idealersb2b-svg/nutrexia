@@ -1,84 +1,57 @@
-'use client';
+import { createClient } from '../../../utils/supabase/server';
+import { redirect } from 'next/navigation';
 
-import '../admin.css';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ message: string }>;
+}) {
+  const resolvedParams = await searchParams;
 
-export default function AdminLoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const signIn = async (formData: FormData) => {
+    'use server';
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const supabase = await createClient();
 
-    // Placeholder auth — will be replaced with real API auth
-    if (email === 'admin@nutrexia.in' && password === (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123')) {
-      // Set a simple cookie for middleware to check
-      document.cookie = `nutrexia-admin-token=authenticated; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
-      router.push('/admin');
-    } else {
-      setError('Invalid email or password');
-      setLoading(false);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      return redirect('/admin/login?message=Could not authenticate user');
     }
+
+    return redirect('/admin');
   };
 
   return (
-    <div className="admin-login-wrap">
-      <div className="admin-login-card">
-        <div className="admin-login-brand">
-          <h1>NUTREXIA</h1>
-          <p>Admin Panel Login</p>
+    <div className="login-wrapper">
+      <div className="login-card">
+        <div className="login-brand">
+          <h2>NUTREXIA</h2>
+          <p>Admin Portal</p>
         </div>
-
-        {error && <div className="admin-login-error">{error}</div>}
-
-        <form onSubmit={handleLogin}>
-          <div className="admin-form-group">
-            <label className="admin-label" htmlFor="admin-email">Email</label>
-            <input
-              id="admin-email"
-              className="admin-input"
-              type="email"
-              placeholder="admin@nutrexia.in"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
+        
+        <form className="login-form" action={signIn}>
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="admin@nutrexia.in" />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="••••••••" />
           </div>
 
-          <div className="admin-form-group">
-            <label className="admin-label" htmlFor="admin-password">Password</label>
-            <input
-              id="admin-password"
-              className="admin-input"
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="admin-btn admin-btn-primary"
-            style={{ width: '100%', justifyContent: 'center', padding: '12px', marginTop: '8px' }}
-            disabled={loading}
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
+          <button type="submit" className="login-btn">Sign In to Dashboard</button>
+          
+          {resolvedParams?.message && (
+            <p className="login-error">{resolvedParams.message}</p>
+          )}
         </form>
-
-        <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.78rem', color: 'var(--admin-text-muted)' }}>
-          Default: admin@nutrexia.in / admin123
-        </div>
       </div>
     </div>
   );
