@@ -10,10 +10,13 @@ export default async function AdminProductsPage() {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <h1 style={{ margin: 0, fontFamily: 'var(--font-space)' }}>Products</h1>
-        <button className="login-btn" style={{ width: 'auto', marginTop: 0, padding: '10px 20px' }}>
-          + Add Product
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+        <h1 style={{ margin: 0, fontFamily: 'var(--font-space)', fontSize: '32px', letterSpacing: '-0.02em' }}>Products</h1>
+        <button className="btn-primary">
+          <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" style={{width: 18, height: 18}}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Add Product
         </button>
       </div>
 
