@@ -6,8 +6,14 @@ export async function middleware(request: NextRequest) {
     request,
   })
 
-  // Skip supabase auth initialization if env vars are missing
+  // Security: Fail closed if env vars are missing
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    if (request.nextUrl.pathname.startsWith('/admin') && !request.nextUrl.pathname.startsWith('/admin/login')) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      url.searchParams.set('message', 'System misconfigured: Missing Supabase keys')
+      return NextResponse.redirect(url)
+    }
     return supabaseResponse
   }
 
