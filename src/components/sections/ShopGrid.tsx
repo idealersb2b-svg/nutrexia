@@ -3,14 +3,33 @@
 import { useState } from 'react';
 import { useUI } from '../../context/UIContext';
 
-export default function ShopGrid() {
+type VariantProps = {
+  id: string;
+  sku: string;
+  name: string;
+  price: number;
+  mrp: number;
+  servings: number;
+  pricePerServing: number;
+  isSubscription: boolean;
+  product: {
+    images: { url: string }[];
+  };
+};
+
+export default function ShopGrid({ variants = [] }: { variants?: VariantProps[] }) {
   const { addToCart, openCart } = useUI();
   
-  const [qtyTrial, setQtyTrial] = useState(1);
-  const [qtyPouch, setQtyPouch] = useState(1);
+  // State for quantities keyed by variant ID
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
 
-  const handleAddToCart = (id: string, name: string, meta: string, price: number, quantity: number, image: string) => {
-    addToCart({ id, name, meta, price, quantity, image });
+  const getQty = (id: string) => quantities[id] || 1;
+  const setQty = (id: string, qty: number) => setQuantities({ ...quantities, [id]: qty });
+
+  const handleAddToCart = (variant: VariantProps, quantity: number) => {
+    const meta = variant.isSubscription ? 'Delivered every 90 days' : `${variant.servings} servings`;
+    const image = variant.product?.images?.[0]?.url || '/pack.png';
+    addToCart({ id: variant.id, name: variant.name, meta, price: variant.price, quantity, image });
     openCart();
   };
 
@@ -24,91 +43,52 @@ export default function ShopGrid() {
         </div>
         
         <div className="shop-grid">
-          {/* Trial Pack */}
-          <div className="prod-card">
-            <div className="prod-img">
-              <img src="/pack.png" alt="Nutrexia trial sachets" style={{ maxWidth: 120, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
-            </div>
-            <div className="prod-body">
-              <h4>Trial Pack</h4>
-              <div className="sub">5 × 30g single-serve sachets</div>
-              <div className="prod-price-row">
-                <span className="prod-price">₹249</span>
-                <span className="prod-was">₹399</span>
-              </div>
-              <div className="prod-meta">₹49.80 / serving</div>
-              <div className="qty-add">
-                <div className="qty-box">
-                  <button onClick={() => setQtyTrial(Math.max(1, qtyTrial - 1))}>-</button>
-                  <span>{qtyTrial}</span>
-                  <button onClick={() => setQtyTrial(qtyTrial + 1)}>+</button>
+          {variants.map((v) => {
+            const isPouch = v.sku === 'NTRX-1KG';
+            const isSub = v.sku === 'NTRX-SUB-QTR';
+            const imgUrl = v.product?.images?.[0]?.url || '/pack.png';
+            
+            return (
+              <div key={v.id} className={`prod-card ${isPouch ? 'best' : ''}`}>
+                {isPouch && <div className="prod-ribbon">Most Popular</div>}
+                {isSub && <div className="prod-ribbon" style={{ background: 'var(--char)', color: 'var(--cream)' }}>Lock Price</div>}
+                
+                <div className="prod-img">
+                  <img src={imgUrl} alt={v.name} style={{ maxWidth: isPouch || isSub ? 140 : 120, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
                 </div>
-                <button 
-                  className="add-btn" 
-                  onClick={() => handleAddToCart('trial', 'Trial Pack', '5 × 30g sachets', 249, qtyTrial, '/pack.png')}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* 1kg Pouch */}
-          <div className="prod-card best">
-            <div className="prod-ribbon">Most Popular</div>
-            <div className="prod-img">
-              <img src="/pack.png" alt="Nutrexia 1kg pouch" style={{ maxWidth: 140, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
-            </div>
-            <div className="prod-body">
-              <h4>1kg Foundation Pouch</h4>
-              <div className="sub">33 servings · Resealable</div>
-              <div className="prod-price-row">
-                <span className="prod-price">₹1,650</span>
-                <span className="prod-was">₹2,250</span>
-              </div>
-              <div className="prod-meta">₹50.00 / serving</div>
-              <div className="qty-add">
-                <div className="qty-box">
-                  <button onClick={() => setQtyPouch(Math.max(1, qtyPouch - 1))}>-</button>
-                  <span>{qtyPouch}</span>
-                  <button onClick={() => setQtyPouch(qtyPouch + 1)}>+</button>
+                
+                <div className="prod-body">
+                  <h4>{v.name}</h4>
+                  <div className="sub">{isSub ? '3 × 1kg Pouches delivered every 90 days' : `${v.servings} servings`}</div>
+                  
+                  <div className="prod-price-row">
+                    <span className="prod-price">₹{v.price.toLocaleString()}</span>
+                    <span className="prod-was">₹{v.mrp.toLocaleString()}</span>
+                  </div>
+                  
+                  <div className="prod-meta">₹{v.pricePerServing.toFixed(2)} / serving {isSub && '(Best Value)'}</div>
+                  
+                  <div className="qty-add">
+                    {!isSub ? (
+                      <div className="qty-box">
+                        <button onClick={() => setQty(v.id, Math.max(1, getQty(v.id) - 1))}>-</button>
+                        <span>{getQty(v.id)}</span>
+                        <button onClick={() => setQty(v.id, getQty(v.id) + 1)}>+</button>
+                      </div>
+                    ) : null}
+                    
+                    <button 
+                      className="add-btn" 
+                      style={isSub ? { width: '100%' } : {}}
+                      onClick={() => handleAddToCart(v, isSub ? 1 : getQty(v.id))}
+                    >
+                      {isSub ? 'Subscribe' : 'Add to Cart'}
+                    </button>
+                  </div>
                 </div>
-                <button 
-                  className="add-btn" 
-                  onClick={() => handleAddToCart('pouch-1kg', '1kg Foundation Pouch', '33 servings', 1650, qtyPouch, '/pack.png')}
-                >
-                  Add to Cart
-                </button>
               </div>
-            </div>
-          </div>
-
-          {/* Subscribe */}
-          <div className="prod-card">
-            <div className="prod-ribbon" style={{ background: 'var(--char)', color: 'var(--cream)' }}>Lock Price</div>
-            <div className="prod-img">
-              <img src="/pack.png" alt="Nutrexia quarterly subscription" style={{ maxWidth: 140, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
-            </div>
-            <div className="prod-body">
-              <h4>Quarterly Subscription</h4>
-              <div className="sub">3 × 1kg Pouches delivered every 90 days</div>
-              <div className="prod-price-row">
-                <span className="prod-price">₹4,450</span>
-                <span className="prod-was">₹6,750</span>
-              </div>
-              <div className="prod-meta">₹44.90 / serving (Best Value)</div>
-              <div className="qty-add">
-                <button 
-                  className="add-btn" 
-                  style={{ width: '100%' }} 
-                  onClick={() => handleAddToCart('sub-quarterly', 'Quarterly Subscription', '3 × 1kg Pouches', 4450, 1, '/pack.png')}
-                >
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-
+            );
+          })}
         </div>
       </div>
     </section>

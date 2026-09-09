@@ -1,3 +1,4 @@
+import { prisma } from '../lib/prisma';
 import Hero from '../components/sections/Hero';
 import AudienceTabs from '../components/sections/AudienceTabs';
 import Formulation from '../components/sections/Formulation';
@@ -9,7 +10,16 @@ import StoryAndClimate from '../components/sections/StoryAndClimate';
 import TestimonialsAndFaq from '../components/sections/TestimonialsAndFaq';
 import Newsletter from '../components/sections/Newsletter';
 
-export default function StorefrontPage() {
+export default async function StorefrontPage() {
+  const variants = await prisma.productVariant.findMany({
+    include: {
+      product: {
+        include: { images: true }
+      }
+    },
+    orderBy: { price: 'asc' }
+  });
+
   return (
     <>
       <Hero />
@@ -18,7 +28,7 @@ export default function StorefrontPage() {
       <NutritionTabs />
       <Comparison />
       <FomoDrop />
-      <ShopGrid />
+      <ShopGrid variants={variants} />
       <StoryAndClimate />
       <TestimonialsAndFaq />
       <Newsletter />
