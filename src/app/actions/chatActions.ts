@@ -5,17 +5,21 @@ import { revalidatePath } from 'next/cache';
 
 export async function createGuestTicket(formData: FormData) {
   try {
+    const { createClient } = await import('../../utils/supabase/server');
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
     const email = formData.get('email') as string;
     const subject = formData.get('subject') as string;
     const message = formData.get('message') as string;
 
     const conversation = await prisma.conversation.create({
       data: {
+        userId: user ? user.id : null,
         guestEmail: email,
         subject: subject,
         messages: {
           create: {
-            sender: 'GUEST',
+            sender: user ? 'USER' : 'GUEST',
             content: message,
           }
         }
