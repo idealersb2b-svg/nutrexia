@@ -7,7 +7,7 @@ export default async function AdminChatsPage() {
   const conversations = await prisma.conversation.findMany({
     orderBy: { updatedAt: 'desc' },
     include: {
-      user: true,
+      user: { include: { profile: true } },
       messages: {
         orderBy: { createdAt: 'desc' },
         take: 1
