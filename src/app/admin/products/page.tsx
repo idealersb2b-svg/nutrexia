@@ -1,4 +1,5 @@
 import { prisma } from '../../../lib/prisma';
+import Link from 'next/link';
 
 export default async function AdminProductsPage() {
   const variants = await prisma.productVariant.findMany({
@@ -12,12 +13,12 @@ export default async function AdminProductsPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
         <h1 style={{ margin: 0, fontFamily: 'var(--font-space)', fontSize: '32px', letterSpacing: '-0.02em' }}>Products</h1>
-        <button className="btn-primary">
+        <Link href="/admin/products/new" className="btn-primary" style={{ textDecoration: 'none' }}>
           <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" style={{width: 18, height: 18}}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
           Add Product
-        </button>
+        </Link>
       </div>
 
       <div className="admin-card">
