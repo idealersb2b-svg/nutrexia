@@ -32,8 +32,8 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '32px' }}>
-        <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '32px' }}>
+        <div style={{ flex: '1 1 min(100%, 600px)', minWidth: 0 }}>
           <div className="admin-card" style={{ marginBottom: '32px' }}>
             <div className="admin-card-header">
               <h3>Existing Variants</h3>
@@ -74,7 +74,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           </div>
         </div>
 
-        <div>
+        <div style={{ flex: '0 0 350px', maxWidth: '100%' }}>
           <div className="admin-card" style={{ padding: '32px' }}>
             <h3 style={{ margin: '0 0 24px 0', fontFamily: 'var(--font-space)', fontSize: '20px' }}>Main Image</h3>
             {product.images.length > 0 ? (

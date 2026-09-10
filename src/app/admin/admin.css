@@ -295,6 +295,7 @@ body {
   border: 1px solid var(--admin-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  overflow-x: auto;
 }
 
 .admin-card-header {
