@@ -14,9 +14,10 @@ export default function Footer() {
         </div>
         <div className="foot-col">
           <h5>Explore</h5>
-          <a href="#nutrition">Lab Reports</a>
-          <a href="#story">Our Story</a>
-          <a href="#faq">FAQ</a>
+          <a href="/#nutrition">Lab Reports</a>
+          <a href="/#story">Our Story</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/contact">Contact Us</a>
         </div>
         <div className="foot-col">
           <h5>Legal</h5>
