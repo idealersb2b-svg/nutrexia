@@ -43,23 +43,24 @@ export default function ShopGrid({ variants = [] }: { variants?: VariantProps[] 
         </div>
         
         <div className="shop-grid">
-          {variants.map((v) => {
-            const isPouch = v.sku === 'NTRX-1KG';
-            const isSub = v.sku === 'NTRX-SUB-QTR';
+          {variants.map((v, idx) => {
+            // Dynamically assign 'Most Popular' to the second item (if it exists) to mimic previous behavior without hardcoding
+            const isPopular = !v.isSubscription && idx === 1;
+            const isSub = v.isSubscription;
             const imgUrl = v.product?.images?.[0]?.url || '/pack.png';
             
             return (
-              <div key={v.id} className={`prod-card ${isPouch ? 'best' : ''}`}>
-                {isPouch && <div className="prod-ribbon">Most Popular</div>}
-                {isSub && <div className="prod-ribbon" style={{ background: 'var(--char)', color: 'var(--cream)' }}>Lock Price</div>}
+              <div key={v.id} className={`prod-card ${isPopular ? 'best' : ''}`}>
+                {isPopular && <div className="prod-ribbon">Most Popular</div>}
+                {isSub && <div className="prod-ribbon" style={{ background: 'var(--char)', color: 'var(--cream)' }}>Subscription</div>}
                 
                 <div className="prod-img">
-                  <img src={imgUrl} alt={v.name} style={{ maxWidth: isPouch || isSub ? 140 : 120, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
+                  <img src={imgUrl} alt={v.name} style={{ maxWidth: isPopular || isSub ? 140 : 120, filter: 'drop-shadow(0 14px 18px rgba(0,0,0,0.2))' }} />
                 </div>
                 
                 <div className="prod-body">
                   <h4>{v.name}</h4>
-                  <div className="sub">{isSub ? '3 × 1kg Pouches delivered every 90 days' : `${v.servings} servings`}</div>
+                  <div className="sub">{isSub ? `Delivered automatically on your schedule` : `${v.servings} servings`}</div>
                   
                   <div className="prod-price-row">
                     <span className="prod-price">₹{v.price.toLocaleString()}</span>

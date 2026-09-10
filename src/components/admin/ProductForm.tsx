@@ -76,6 +76,14 @@ export default function ProductForm() {
           />
         </div>
 
+        <div className="form-group" style={{ marginBottom: '24px' }}>
+          <label htmlFor="image">Main Product Image</label>
+          <input type="file" id="image" name="image" accept="image/*" required />
+          <p style={{ fontSize: '12px', color: 'var(--admin-text-light)', marginTop: '4px', margin: 0 }}>
+            Upload a high-quality product image (JPG, PNG, WebP). Max size 5MB.
+          </p>
+        </div>
+
         <div className="form-group">
           <label style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
             <input type="checkbox" name="isPublished" defaultChecked style={{ width: 'auto', transform: 'scale(1.2)' }} />

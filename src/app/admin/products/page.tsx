@@ -36,10 +36,12 @@ export default async function AdminProductsPage() {
             {variants.map(variant => (
               <tr key={variant.id}>
                 <td style={{ fontWeight: 500 }}>
-                  {variant.name}
-                  <div style={{ fontSize: '12px', color: 'var(--admin-text-light)', marginTop: '4px' }}>
-                    {variant.product.name}
-                  </div>
+                  <Link href={`/admin/products/${variant.product.id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                    {variant.name}
+                    <div style={{ fontSize: '12px', color: 'var(--admin-text-light)', marginTop: '4px' }}>
+                      {variant.product.name}
+                    </div>
+                  </Link>
                 </td>
                 <td style={{ fontFamily: 'monospace' }}>{variant.sku}</td>
                 <td>₹{variant.price.toLocaleString()}</td>
