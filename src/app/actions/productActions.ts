@@ -41,9 +41,13 @@ export async function createProduct(formData: FormData) {
       const fileExt = imageFile.name.split('.').pop();
       const fileName = `${slug}-${Date.now()}.${fileExt}`;
       
+      const arrayBuffer = await imageFile.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('product-images')
-        .upload(fileName, imageFile, {
+        .upload(fileName, buffer, {
+          contentType: imageFile.type,
           cacheControl: '3600',
           upsert: false
         });
