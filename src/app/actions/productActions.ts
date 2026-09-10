@@ -54,7 +54,7 @@ export async function createProduct(formData: FormData) {
 
       if (uploadError) {
         console.error('Storage upload error:', uploadError);
-        return { success: false, error: 'Failed to upload product image to Supabase' };
+        return { success: false, error: `Supabase Storage Error: ${uploadError.message}` };
       }
 
       const { data: publicUrlData } = supabase.storage
