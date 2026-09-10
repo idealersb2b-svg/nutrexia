@@ -24,18 +24,18 @@ export default function ContactPage() {
   return (
     <div style={{ background: '#0a0a0a', minHeight: '80vh', paddingTop: '120px', paddingBottom: '120px' }}>
       <div className="wrap" style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <h1 style={{ fontFamily: 'var(--font-space)', fontSize: '48px', marginBottom: '16px', textAlign: 'center' }}>Contact Support</h1>
-        <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '48px' }}>
+        <h1 style={{ fontFamily: 'var(--font-space)', fontSize: '48px', marginBottom: '16px', textAlign: 'center', color: 'var(--cream)' }}>Contact Support</h1>
+        <p style={{ color: 'var(--cream-2)', textAlign: 'center', marginBottom: '48px', opacity: 0.8 }}>
           Have a question about your order, our ingredients, or just want to say hi? Send us a message and our team will get back to you shortly.
         </p>
 
         {status === 'success' ? (
-          <div style={{ background: 'rgba(163, 230, 53, 0.1)', border: '1px solid var(--primary)', borderRadius: '16px', padding: '40px', textAlign: 'center' }}>
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="var(--primary)" style={{ width: '48px', height: '48px', margin: '0 auto 16px' }}>
+          <div style={{ background: 'rgba(240, 180, 41, 0.1)', border: '1px solid var(--gold)', borderRadius: '16px', padding: '40px', textAlign: 'center' }}>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="var(--gold)" style={{ width: '48px', height: '48px', margin: '0 auto 16px' }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h2 style={{ fontFamily: 'var(--font-space)', fontSize: '24px', marginBottom: '8px', color: '#fff' }}>Message Sent!</h2>
-            <p style={{ color: 'var(--text-secondary)' }}>
+            <p style={{ color: 'var(--cream-2)' }}>
               We've received your ticket. Our support team will reply to your email address soon.
             </p>
           </div>
@@ -86,8 +86,8 @@ export default function ContactPage() {
               type="submit" 
               disabled={status === 'loading'}
               style={{ 
-                background: 'var(--primary)', 
-                color: '#000', 
+                background: 'var(--gold)', 
+                color: 'var(--char)', 
                 border: 'none', 
                 padding: '16px', 
                 borderRadius: '12px', 
