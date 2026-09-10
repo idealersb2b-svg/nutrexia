@@ -52,6 +52,7 @@ model User {
   wishlist      Wishlist?
   reviews       Review[]
   couponUsages  CouponUsage[]
+  conversations Conversation[]
 }
 
 model UserProfile {
@@ -378,4 +379,26 @@ model AuditLog {
   details   String   @db.Text
   adminUser String
   createdAt DateTime @default(now())
+}
+
+model Conversation {
+  id        String    @id @default(uuid())
+  userId    String?   // Optional for guest tickets
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestEmail String?
+  subject   String
+  status    String    @default("OPEN") // OPEN, CLOSED
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         String       // "USER", "ADMIN", "GUEST"
+  content        String       @db.Text
+  isRead         Boolean      @default(false)
+  createdAt      DateTime     @default(now())
 }
