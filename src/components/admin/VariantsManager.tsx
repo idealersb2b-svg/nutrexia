@@ -25,9 +25,9 @@ export default function VariantsManager({ productId, variants }: { productId: st
         <div className="admin-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h3>Existing Variants</h3>
           {editingVariant && (
-            <button 
-              onClick={() => setEditingVariant(null)} 
-              style={{ background: 'none', border: '1px solid var(--admin-border)', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}
+            <button
+              onClick={() => setEditingVariant(null)}
+              style={{ background: 'none', border: '1px solid var(--admin-border)', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', color: '#fff', }}
             >
               Cancel Edit
             </button>
@@ -55,7 +55,7 @@ export default function VariantsManager({ productId, variants }: { productId: st
                   </span>
                 </td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => setEditingVariant(v)}
                     style={{ background: 'none', border: 'none', color: 'var(--admin-primary)', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}
                   >
@@ -80,10 +80,10 @@ export default function VariantsManager({ productId, variants }: { productId: st
           <h3>{editingVariant ? `Edit Variant: ${editingVariant.name}` : 'Add New Variant'}</h3>
         </div>
         <div style={{ padding: '32px' }}>
-          <VariantForm 
-            productId={productId} 
-            variant={editingVariant} 
-            onSuccess={() => setEditingVariant(null)} 
+          <VariantForm
+            productId={productId}
+            variant={editingVariant}
+            onSuccess={() => setEditingVariant(null)}
           />
         </div>
       </div>
