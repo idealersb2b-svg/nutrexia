@@ -157,3 +157,49 @@ export async function createVariant(formData: FormData) {
     return { success: false, error: error.message || 'An unknown error occurred.' };
   }
 }
+
+export async function updateVariant(formData: FormData) {
+  try {
+    const variantId = formData.get('variantId') as string;
+    const productId = formData.get('productId') as string;
+    const sku = formData.get('sku') as string;
+    const variantName = formData.get('variantName') as string;
+    const price = parseFloat(formData.get('price') as string);
+    const mrp = parseFloat(formData.get('mrp') as string);
+    const servings = parseInt(formData.get('servings') as string, 10);
+    const pricePerServing = parseFloat(formData.get('pricePerServing') as string);
+    const stock = parseInt(formData.get('stock') as string, 10);
+    const isSubscription = formData.get('isSubscription') === 'on';
+
+    if (!variantId || !productId || !sku || !variantName || isNaN(price)) {
+      return { success: false, error: 'Missing required fields' };
+    }
+
+    const variant = await prisma.productVariant.update({
+      where: { id: variantId },
+      data: {
+        sku,
+        name: variantName,
+        price,
+        mrp,
+        servings,
+        pricePerServing,
+        stock,
+        isSubscription,
+      }
+    });
+
+    revalidatePath(`/admin/products/${productId}`);
+    revalidatePath('/admin/products');
+    revalidatePath('/');
+
+    return { success: true, variantId: variant.id };
+  } catch (error: any) {
+    console.error('Failed to update variant:', error);
+    if (error.code === 'P2002') {
+      return { success: false, error: 'A variant with this SKU already exists.' };
+    }
+    return { success: false, error: error.message || 'An unknown error occurred.' };
+  }
+}
+

@@ -1,5 +1,5 @@
 import { prisma } from '../../../../lib/prisma';
-import VariantForm from '../../../../components/admin/VariantForm';
+import VariantsManager from '../../../../components/admin/VariantsManager';
 import { notFound } from 'next/navigation';
 
 export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
@@ -34,44 +34,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '32px' }}>
         <div style={{ flex: '1 1 min(100%, 600px)', minWidth: 0 }}>
-          <div className="admin-card" style={{ marginBottom: '32px' }}>
-            <div className="admin-card-header">
-              <h3>Existing Variants</h3>
-            </div>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Variant</th>
-                  <th>SKU</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-                </tr>
-              </thead>
-              <tbody>
-                {product.variants.map((v) => (
-                  <tr key={v.id}>
-                    <td style={{ fontWeight: 600 }}>{v.name}</td>
-                    <td style={{ fontFamily: 'monospace', fontSize: '13px' }}>{v.sku}</td>
-                    <td>₹{v.price}</td>
-                    <td>
-                      <span className={`status-badge ${v.stock > 100 ? 'active' : 'pending'}`}>
-                        {v.stock} units
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="admin-card">
-            <div className="admin-card-header">
-              <h3>Add New Variant</h3>
-            </div>
-            <div style={{ padding: '32px' }}>
-              <VariantForm productId={product.id} />
-            </div>
-          </div>
+          <VariantsManager productId={product.id} variants={product.variants} />
         </div>
 
         <div style={{ flex: '0 0 350px', maxWidth: '100%' }}>
