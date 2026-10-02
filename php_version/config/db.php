@@ -34,9 +34,12 @@ function getDBConnection() {
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (\PDOException $e) {
-            // For production safety: avoid dumping raw credentials
             http_response_code(500);
-            die("Database Connection Error: Please verify Hostinger MySQL credentials in config/db.php.");
+            header('Content-Type: application/json');
+            echo json_encode([
+                "error" => "Database Connection Failed: Please update DB_NAME, DB_USER, and DB_PASS in config/db.php on Hostinger."
+            ]);
+            exit();
         }
     }
     return $pdo;
