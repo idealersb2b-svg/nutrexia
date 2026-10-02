@@ -108,3 +108,15 @@ function initFAQ() {
     });
   });
 }
+
+// Nutrition Tab Switcher
+function switchNutriTab(tabName) {
+  document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.npanel').forEach(p => p.classList.remove('active'));
+
+  const activeBtn = document.getElementById('ntab-' + tabName);
+  const activePanel = document.getElementById('npanel-' + tabName);
+
+  if (activeBtn) activeBtn.classList.add('active');
+  if (activePanel) activePanel.classList.add('active');
+}
