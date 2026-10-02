@@ -255,10 +255,10 @@ INSERT INTO `faq` (`id`, `question`, `answer`, `category`, `position`) VALUES
 (UUID(), 'How long does shipping take across India?', 'Standard delivery takes 3-5 business days across major metro cities in India. Express shipping options are available at checkout.', 'Shipping', 2),
 (UUID(), 'Are Nutrexia products lab tested?', 'Yes, every production batch is third-party lab tested for heavy metals, purity, and potency. Certificates of Analysis are published on batch releases.', 'Quality', 3);
 
--- Insert Default Admin Account (admin@nutrexia.in / Admin@123456)
+-- Insert Default Admin Account (admin@nutrexia.in / Kharghar@2020)
 SET @admin_id = UUID();
 INSERT INTO `user` (`id`, `email`, `password_hash`, `role`) VALUES
-(@admin_id, 'admin@nutrexia.in', '$2y$10$mB5k4r.XnO9yqT3B3e1QNe7S6J6K5L4M3N2O1P0Q9R8S7T6U5V4W3', 'ADMIN');
+(@admin_id, 'admin@nutrexia.in', '$2y$12$GqtKppVCNCt0OA6p3b9XM.Zik0IUrl.NNxtwQ0Bf34GSMfdeKv6zC', 'ADMIN');
 
 INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`) VALUES
 (UUID(), @admin_id, 'Admin', 'User');
