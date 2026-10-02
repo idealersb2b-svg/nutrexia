@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u352183534_nutrexia_db');
 define('DB_USER', 'u352183534_nutrexia_user');
-define('DB_PASS', 'YourHostingerPasswordHere'); // Replace with your actual Hostinger MySQL Password
+define('DB_PASS', 'Kharghar@2020'); // Replace with your actual Hostinger MySQL Password
 define('DB_CHARSET', 'utf8mb4');
 
 // Razorpay Credentials
