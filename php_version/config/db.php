@@ -7,19 +7,19 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Hostinger Database Credentials (Replace with your actual Hostinger MySQL details)
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'u352183534_nutrexia_db');
-define('DB_USER', getenv('DB_USER') ?: 'u352183534_nutrexia_user');
-define('DB_PASS', getenv('DB_PASS') ?: 'YourHostingerPasswordHere');
+// Hostinger Database Credentials
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'u352183534_nutrexia_db');
+define('DB_USER', 'u352183534_nutrexia_user');
+define('DB_PASS', 'YourHostingerPasswordHere'); // Replace with your actual Hostinger MySQL Password
 define('DB_CHARSET', 'utf8mb4');
 
 // Razorpay Credentials
-define('RAZORPAY_KEY_ID', getenv('RAZORPAY_KEY_ID') ?: 'rzp_test_YourKeyId');
-define('RAZORPAY_KEY_SECRET', getenv('RAZORPAY_KEY_SECRET') ?: 'YourKeySecret');
+define('RAZORPAY_KEY_ID', 'rzp_test_YourKeyId');
+define('RAZORPAY_KEY_SECRET', 'YourKeySecret');
 
 // Site URL Config
-define('SITE_URL', getenv('SITE_URL') ?: 'https://nutrexia.in');
+define('SITE_URL', 'https://nutrexia.in');
 
 function getDBConnection() {
     static $pdo = null;
