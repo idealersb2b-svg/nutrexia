@@ -23,9 +23,8 @@
         </div>
         <div class="foot-col">
           <h5>Contact</h5>
-          <p>📧 hello@nutrexia.in</p>
-          <p>📞 +91 (800) 555-NUTR</p>
-          <p>📍 Bengaluru, Karnataka, India</p>
+          <p>📧 support@nutrexia.in</p>
+          <p>📍 HB Colony, Bhimatangi, Bhubaneswar, Odisha-751002</p>
         </div>
       </div>
       <div class="foot-bottom">

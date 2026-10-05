@@ -41,7 +41,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
 
         <!-- Email Item -->
-        <div style="display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start;">
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
           <div style="width: 46px; height: 46px; border-radius: 14px; background: var(--cream-2); color: var(--pea-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
             📧
           </div>
@@ -50,17 +50,6 @@ require_once __DIR__ . '/includes/header.php';
             <p style="font-size: 14px; color: var(--char-soft); margin: 0;">
               <a href="mailto:support@nutrexia.in" style="color: var(--pea-deep); font-weight: 700; text-decoration: underline;">support@nutrexia.in</a>
             </p>
-          </div>
-        </div>
-
-        <!-- Phone Item -->
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
-          <div style="width: 46px; height: 46px; border-radius: 14px; background: var(--cream-2); color: var(--pea-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
-            📞
-          </div>
-          <div>
-            <h5 style="font-size: 15px; font-weight: 700; color: var(--char); margin-bottom: 4px;">Phone Helpline</h5>
-            <p style="font-size: 14px; color: var(--char-soft); margin: 0; font-weight: 600;">+91 (800) 555-NUTR</p>
           </div>
         </div>
       </div>
