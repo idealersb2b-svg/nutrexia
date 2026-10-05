@@ -249,6 +249,31 @@ CREATE TABLE `faq` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- 15. Conversations Table
+CREATE TABLE IF NOT EXISTS `conversation` (
+  `id` VARCHAR(36) NOT NULL,
+  `guest_email` VARCHAR(255) DEFAULT NULL,
+  `user_id` VARCHAR(36) DEFAULT NULL,
+  `subject` VARCHAR(255) NOT NULL,
+  `status` ENUM('OPEN', 'CLOSED', 'PENDING') NOT NULL DEFAULT 'OPEN',
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_conv_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 16. Messages Table
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` VARCHAR(36) NOT NULL,
+  `conversation_id` VARCHAR(36) NOT NULL,
+  `sender` VARCHAR(50) NOT NULL DEFAULT 'GUEST',
+  `content` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_msg_conv` (`conversation_id`),
+  CONSTRAINT `fk_msg_conv` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Insert Seed FAQs
 INSERT INTO `faq` (`id`, `question`, `answer`, `category`, `position`) VALUES
 (UUID(), 'What makes Nutrexia different from standard supplements?', 'Nutrexia utilizes climate-smart, bio-optimized formulations designed for maximum cellular absorption without artificial fillers or synthetic binders.', 'General', 1),
@@ -262,3 +287,4 @@ INSERT INTO `user` (`id`, `email`, `password_hash`, `role`) VALUES
 
 INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`) VALUES
 (UUID(), @admin_id, 'Admin', 'User');
+
