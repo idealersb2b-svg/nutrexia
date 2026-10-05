@@ -7,7 +7,7 @@
 if (!defined('SMTP_HOST')) define('SMTP_HOST', 'smtp.hostinger.com');
 if (!defined('SMTP_PORT')) define('SMTP_PORT', 465);
 if (!defined('SMTP_USER')) define('SMTP_USER', 'support@nutrexia.in');
-if (!defined('SMTP_PASS')) define('SMTP_PASS', 'Kharghar@2020'); // Hostinger Email Password
+if (!defined('SMTP_PASS')) define('SMTP_PASS', '@Taloja#&2026'); // Hostinger Email Password
 
 /**
  * Send Email via Direct Socket SMTP (SSL on port 465)
