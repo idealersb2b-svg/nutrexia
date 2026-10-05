@@ -138,98 +138,185 @@ $products = [
   </div>
 </section>
 
-<!-- Lab Verification & Nutrition Section (Matching Uploaded Image) -->
+<!-- Lab Verification & Nutrition Section (Redesigned with Premium Dark Theme & Fail-safe inline styles) -->
 <section id="nutrition" class="wrap" style="padding:96px 0;">
-  <div class="sec-head">
-    <span class="sec-tag">The receipts</span>
-    <h2>Independently lab-verified, not self-declared.</h2>
-    <p>Every number below comes from NABL-accredited testing (ITC Labs / Qualitek Labs) on our millet-plant-protein premix, or from our published fortification blueprint built on ICMR-NIN RDA 2020 guidance.</p>
+  <div class="sec-head" style="margin-bottom: 40px;">
+    <span class="sec-tag" style="color:var(--pea-deep); font-weight:700; font-size:13.5px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; display:block;">The receipts</span>
+    <h2 style="font-size:clamp(28px,3.4vw,42px); font-weight:700; color:var(--char); line-height:1.15; margin-bottom:14px;">Independently lab-verified, not self-declared.</h2>
+    <p style="font-size:16.5px; color:var(--char-soft); line-height:1.6; max-width:660px;">Every number below comes from NABL-accredited testing (ITC Labs / Qualitek Labs) on our millet-plant-protein premix, or from our published fortification blueprint built on ICMR-NIN RDA 2020 guidance.</p>
   </div>
 
-  <div class="nutri">
-    <div class="nutri-grid">
-      <!-- Left: Per 30g serving -->
+  <div class="nutri" style="background:#121410; color:#FAF6EA; border-radius:28px; padding:48px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,0.08); box-shadow:0 30px 70px rgba(0,0,0,0.35);">
+    <div class="nutri-grid" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; position:relative; z-index:1;">
+      
+      <!-- Left Column: Per 30g serving Macros -->
       <div class="nutri-left">
-        <h3>Per 30g serving</h3>
-        <p>Rich Chocolate premix, mixed with 200–250ml cold water or plant milk.</p>
-        <div class="macro-row"><span class="m-name">Plant protein</span><span class="m-val">24.9 g</span></div>
-        <div class="macro-row"><span class="m-name">Carbohydrates</span><span class="m-val">6.4 g</span></div>
-        <div class="macro-row"><span class="m-name">Fats</span><span class="m-val">3.1 g</span></div>
-        <div class="macro-row"><span class="m-name">Dietary fibre</span><span class="m-val">2.5 g</span></div>
-        <div class="macro-row"><span class="m-name">Energy</span><span class="m-val">~145 kcal</span></div>
-        <div class="macro-row"><span class="m-name">Added sugar</span><span class="m-val">0 g</span></div>
-        <div class="serving-note">Macro figures reflect our front-of-pack declaration for the Rich Chocolate SKU; fibre and energy are scaled from NABL lab analysis (ITC Labs report TR02FD-2606181716) of the base millet-protein premix per 100g.</div>
+        <h3 style="font-size:26px; font-weight:700; color:#FFFFFF; margin-bottom:6px;">Per 30g serving</h3>
+        <p style="color:#D1D5DB; font-size:14px; line-height:1.5; margin-bottom:24px;">Rich Chocolate premix, mixed with 200–250ml cold water or plant milk.</p>
+        
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Plant protein</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#F0B429; background:rgba(240,180,41,0.1); padding:2px 10px; border-radius:8px;">24.9 g</span>
+          </div>
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Carbohydrates</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#F0B429;">6.4 g</span>
+          </div>
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Fats</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#F0B429;">3.1 g</span>
+          </div>
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Dietary fibre</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#F0B429;">2.5 g</span>
+          </div>
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Energy</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#F0B429;">~145 kcal</span>
+          </div>
+          <div class="macro-row" style="display:flex; justify-content:space-between; align-items:center; padding:14px 0;">
+            <span class="m-name" style="font-weight:600; font-size:14.5px; color:#E5E7EB;">Added sugar</span>
+            <span class="m-val" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#7CB233; background:rgba(124,178,51,0.15); padding:2px 10px; border-radius:8px;">0 g</span>
+          </div>
+        </div>
+
+        <div class="serving-note" style="margin-top:22px; font-size:12px; color:rgba(250,246,234,0.5); line-height:1.5; padding-top:14px; border-top:1px dashed rgba(255,255,255,0.1);">
+          Macro figures reflect our front-of-pack declaration for the Rich Chocolate SKU; fibre and energy are scaled from NABL lab analysis (ITC Labs report TR02FD-2606181716) of the base millet-protein premix per 100g.
+        </div>
       </div>
 
-      <!-- Right: Interactive Tabs -->
+      <!-- Right Column: Interactive Tab Bar & Micro Panels -->
       <div>
-        <div class="nutri-tabs">
-          <button id="ntab-vit" class="ntab active" onclick="switchNutriTab('vit')">Vitamins</button>
-          <button id="ntab-min" class="ntab" onclick="switchNutriTab('min')">Minerals</button>
-          <button id="ntab-aa" class="ntab" onclick="switchNutriTab('aa')">Amino acids</button>
-          <button id="ntab-safe" class="ntab" onclick="switchNutriTab('safe')">Safety panel</button>
+        <div class="nutri-tabs" style="display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap;">
+          <button id="ntab-vit" class="ntab active" onclick="switchNutriTab('vit')" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:13.5px; cursor:pointer;">Vitamins</button>
+          <button id="ntab-min" class="ntab" onclick="switchNutriTab('min')" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:13.5px; cursor:pointer;">Minerals</button>
+          <button id="ntab-aa" class="ntab" onclick="switchNutriTab('aa')" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:13.5px; cursor:pointer;">Amino acids</button>
+          <button id="ntab-safe" class="ntab" onclick="switchNutriTab('safe')" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:13.5px; cursor:pointer;">Safety panel</button>
         </div>
 
         <!-- Vitamins Panel -->
         <div id="npanel-vit" class="npanel active">
-          <div class="vit-grid">
-            <div class="vit-item"><div class="vit-top"><span class="vn">Vitamin B12 (Methylcobalamin)</span><span class="vv">40% RDA</span></div><div class="bar-track"><div class="bar-fill" style="width: 40%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Vitamin D3 (Cholecalciferol)</span><span class="vv">50% RDA</span></div><div class="bar-track"><div class="bar-fill" style="width: 50%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Vitamin C (lab-detected)</span><span class="vv">16.7mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 65%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Vitamin E (lab-detected)</span><span class="vv">0.66mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 20%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Niacin — B3 (lab-detected)</span><span class="vv">5.5mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 55%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Pantothenic acid — B5</span><span class="vv">265µg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 45%;"></div></div></div>
+          <div class="vit-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px 28px;">
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Vitamin B12 (Methylcobalamin)</span>
+                <span class="vv" style="color:#7CB233;">40% RDA</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:40%;"></div>
+              </div>
+            </div>
+
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Vitamin D3 (Cholecalciferol)</span>
+                <span class="vv" style="color:#7CB233;">50% RDA</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:50%;"></div>
+              </div>
+            </div>
+
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Vitamin C (lab-detected)</span>
+                <span class="vv" style="color:#7CB233;">16.7mg/100g</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:65%;"></div>
+              </div>
+            </div>
+
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Vitamin E (lab-detected)</span>
+                <span class="vv" style="color:#7CB233;">0.66mg/100g</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:30%;"></div>
+              </div>
+            </div>
+
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Niacin — B3 (lab-detected)</span>
+                <span class="vv" style="color:#7CB233;">5.5mg/100g</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:55%;"></div>
+              </div>
+            </div>
+
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;">
+                <span class="vn" style="color:#FFFFFF;">Pantothenic acid — B5</span>
+                <span class="vv" style="color:#7CB233;">265µg/100g</span>
+              </div>
+              <div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;">
+                <div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:45%;"></div>
+              </div>
+            </div>
           </div>
-          <div class="lab-credit">B12 & D3 shown as our fortification blueprint target (ICMR-NIN RDA 2020 reference). C, E, B3 & B5 are directly lab-detected values from the base premix, ITC Labs report.</div>
+          <div class="lab-credit" style="margin-top:22px; font-size:12.5px; color:rgba(250,246,234,0.5); line-height:1.5;">
+            B12 & D3 shown as our fortification blueprint target (ICMR-NIN RDA 2020 reference). C, E, B3 & B5 are directly lab-detected values from the base premix, ITC Labs report.
+          </div>
         </div>
 
         <!-- Minerals Panel -->
         <div id="npanel-min" class="npanel">
-          <div class="vit-grid">
-            <div class="vit-item"><div class="vit-top"><span class="vn">Iron (chelated bisglycinate)</span><span class="vv">25% RDA</span></div><div class="bar-track"><div class="bar-fill" style="width: 25%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Zinc (bisglycinate)</span><span class="vv">20% RDA</span></div><div class="bar-track"><div class="bar-fill" style="width: 20%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Calcium (lab-detected)</span><span class="vv">147mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 35%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Magnesium (lab-detected)</span><span class="vv">109mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 40%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Potassium (lab-detected)</span><span class="vv">308mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 50%;"></div></div></div>
-            <div class="vit-item"><div class="vit-top"><span class="vn">Sodium (lab-detected)</span><span class="vv">449mg/100g</span></div><div class="bar-track"><div class="bar-fill" style="width: 60%;"></div></div></div>
+          <div class="vit-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px 28px;">
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Iron (chelated bisglycinate)</span><span class="vv" style="color:#7CB233;">25% RDA</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:25%;"></div></div></div>
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Zinc (bisglycinate)</span><span class="vv" style="color:#7CB233;">20% RDA</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:20%;"></div></div></div>
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Calcium (lab-detected)</span><span class="vv" style="color:#7CB233;">147mg/100g</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:35%;"></div></div></div>
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Magnesium (lab-detected)</span><span class="vv" style="color:#7CB233;">109mg/100g</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:40%;"></div></div></div>
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Potassium (lab-detected)</span><span class="vv" style="color:#7CB233;">308mg/100g</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:50%;"></div></div></div>
+            <div class="vit-item" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);"><div class="vit-top" style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;"><span class="vn" style="color:#FFFFFF;">Sodium (lab-detected)</span><span class="vv" style="color:#7CB233;">449mg/100g</span></div><div class="bar-track" style="height:6px; background:rgba(255,255,255,0.12); border-radius:99px; overflow:hidden;"><div class="bar-fill" style="height:100%; background:linear-gradient(90deg,#7CB233,#F0B429); border-radius:99px; width:60%;"></div></div></div>
           </div>
-          <div class="lab-credit">Iron & Zinc shown as fortification blueprint targets using gentle, high-absorption chelated forms. All other minerals are directly lab-detected per 100g of premix.</div>
+          <div class="lab-credit" style="margin-top:22px; font-size:12.5px; color:rgba(250,246,234,0.5); line-height:1.5;">
+            Iron & Zinc shown as fortification blueprint targets using gentle, high-absorption chelated forms. All other minerals are directly lab-detected per 100g of premix.
+          </div>
         </div>
 
         <!-- Amino Acids Panel -->
         <div id="npanel-aa" class="npanel">
-          <div class="aa-tags">
-            <span><b>10.2g</b>Glutamic acid</span>
-            <span><b>5.5g</b>Aspartic acid</span>
-            <span><b>2.8g</b>Lysine</span>
-            <span><b>2.8g</b>Threonine</span>
-            <span><b>2.4g</b>Arginine</span>
-            <span><b>1.8g</b>Alanine</span>
-            <span><b>1.4g</b>Histidine</span>
-            <span><b>0.9g</b>Valine</span>
-            <span><b>0.8g</b>Phenylalanine</span>
-            <span><b>0.6g</b>Leucine</span>
-            <span><b>0.6g</b>Isoleucine</span>
-            <span><b>0.04g</b>Tryptophan</span>
+          <div class="aa-tags" style="display:flex; flex-wrap:wrap; gap:10px;">
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">10.2g</b>Glutamic acid</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">5.5g</b>Aspartic acid</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">2.8g</b>Lysine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">2.8g</b>Threonine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">2.4g</b>Arginine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">1.8g</b>Alanine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">1.4g</b>Histidine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">0.9g</b>Valine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">0.8g</b>Phenylalanine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">0.6g</b>Leucine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">0.6g</b>Isoleucine</span>
+            <span style="background:rgba(255,255,255,0.08); padding:10px 15px; border-radius:12px; font-size:13px; font-weight:700; color:#FAF6EA;"><b style="color:#F0B429; margin-right:6px;">0.04g</b>Tryptophan</span>
           </div>
-          <div class="lab-credit">All 20 amino acids (essential + non-essential) mapped per 100g via LCMSMS — figures shown per gram of base premix, ITC Labs report TR02FD-2606181716.</div>
+          <div class="lab-credit" style="margin-top:22px; font-size:12.5px; color:rgba(250,246,234,0.5); line-height:1.5;">
+            All 20 amino acids (essential + non-essential) mapped per 100g via LCMSMS — figures shown per gram of base premix, ITC Labs report TR02FD-2606181716.
+          </div>
         </div>
 
         <!-- Safety Panel -->
         <div id="npanel-safe" class="npanel">
-          <div class="safety-grid">
-            <div class="safety-item"><span class="tick">✓</span> Lead — below quantification</div>
-            <div class="safety-item"><span class="tick">✓</span> Arsenic — below quantification</div>
-            <div class="safety-item"><span class="tick">✓</span> Cadmium — below quantification</div>
-            <div class="safety-item"><span class="tick">✓</span> Mercury — below quantification</div>
-            <div class="safety-item"><span class="tick">✓</span> Peanut & soya allergen — not detected</div>
-            <div class="safety-item"><span class="tick">✓</span> Gluten & mustard allergen — not detected</div>
-            <div class="safety-item"><span class="tick">✓</span> Milk & sesame allergen — not detected</div>
-            <div class="safety-item"><span class="tick">✓</span> Water activity 0.63 — shelf-stable</div>
+          <div class="safety-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Lead — below quantification</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Arsenic — below quantification</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Cadmium — below quantification</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Mercury — below quantification</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Peanut & soya allergen — not detected</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Gluten & mustard allergen — not detected</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Milk & sesame allergen — not detected</div>
+            <div class="safety-item" style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:14px 16px; border-radius:12px; font-size:13.5px; font-weight:700;"><span class="tick" style="color:#7CB233; font-size:16px;">✓</span> Water activity 0.63 — shelf-stable</div>
           </div>
-          <div class="lab-credit">Sourced from independent NABL-accredited reports: ITC Labs (heavy metals & nutraceuticals) and Qualitek Labs (allergen panel), 2026.</div>
+          <div class="lab-credit" style="margin-top:22px; font-size:12.5px; color:rgba(250,246,234,0.5); line-height:1.5;">
+            Sourced from independent NABL-accredited reports: ITC Labs (heavy metals & nutraceuticals) and Qualitek Labs (allergen panel), 2026.
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
