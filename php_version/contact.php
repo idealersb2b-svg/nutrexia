@@ -3,96 +3,134 @@ $pageTitle = "Contact Us & Location";
 require_once __DIR__ . '/includes/header.php';
 ?>
 
-<!-- Contact Hero Section -->
-<section style="background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%); padding: 64px 0 40px;">
+<!-- Contact Hero Header -->
+<section style="background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%); padding: 72px 0 48px; text-align: center;">
   <div class="wrap">
-    <div class="sec-head center" style="margin-bottom: 24px;">
-      <span class="sec-tag">GET IN TOUCH</span>
-      <h2>We'd Love To Hear From You</h2>
-      <p>Have questions about Nutrexia products, founding batch orders, or farmer cooperatives? Our team is here to help.</p>
+    <div style="max-width: 680px; margin: 0 auto;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--char); color: var(--gold); font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.08em;">
+        📍 HUB & HEADQUARTERS
+      </div>
+      <h1 style="font-size: clamp(32px, 4vw, 52px); font-weight: 700; color: var(--char); margin-bottom: 16px; line-height: 1.1;">We'd Love To Hear From You</h1>
+      <p style="font-size: 17px; color: var(--char-soft); line-height: 1.6; font-weight: 500;">Have questions about Nutrexia superfoods, founding batch orders, or farmer cooperatives? Our team is here to assist you 24/7.</p>
     </div>
   </div>
 </section>
 
-<!-- Contact Form & Company Details Section -->
-<section class="wrap" style="padding: 64px 0 96px;">
-  <div class="contact-grid">
+<!-- Contact Form & Info Grid Section -->
+<section class="wrap" style="padding: 64px 28px 96px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px; align-items: start;">
     
-    <!-- Left Column: Company Info & Static Location Map -->
-    <div>
-      <div class="contact-card" style="margin-bottom: 24px;">
-        <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 24px;">Company Information</h3>
+    <!-- Left Column: Company Details & Interactive Location Map -->
+    <div style="display: flex; flex-direction: column; gap: 28px;">
+      
+      <!-- Company Information Card -->
+      <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 24px; padding: 36px; box-shadow: 0 16px 40px rgba(0,0,0,0.05);">
+        <h3 style="font-size: 22px; font-weight: 700; color: var(--char); margin-bottom: 24px; border-bottom: 2px solid var(--cream-2); padding-bottom: 12px;">Company Details</h3>
 
-        <div class="contact-item">
-          <div class="c-icon">📍</div>
+        <!-- Address Item -->
+        <div style="display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start;">
+          <div style="width: 46px; height: 46px; border-radius: 14px; background: var(--cream-2); color: var(--pea-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            📍
+          </div>
           <div>
-            <h5>Headquarters Address</h5>
-            <p>HB Colony, Bhimatangi, Phase-1, Bhubaneswar, Near Airport, Odisha-751002</p>
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--char); margin-bottom: 4px;">Headquarters Address</h5>
+            <p style="font-size: 14px; color: var(--char-soft); line-height: 1.55; margin: 0;">
+              HB Colony, Bhimatangi, Phase-1, Bhubaneswar, Near Airport, Odisha-751002
+            </p>
           </div>
         </div>
 
-        <div class="contact-item">
-          <div class="c-icon">📧</div>
+        <!-- Email Item -->
+        <div style="display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start;">
+          <div style="width: 46px; height: 46px; border-radius: 14px; background: var(--cream-2); color: var(--pea-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            📧
+          </div>
           <div>
-            <h5>Email Support</h5>
-            <p><a href="mailto:support@nutrexia.in" style="color:var(--pea-deep); font-weight:700;">support@nutrexia.in</a></p>
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--char); margin-bottom: 4px;">Email Support</h5>
+            <p style="font-size: 14px; color: var(--char-soft); margin: 0;">
+              <a href="mailto:support@nutrexia.in" style="color: var(--pea-deep); font-weight: 700; text-decoration: underline;">support@nutrexia.in</a>
+            </p>
           </div>
         </div>
 
-        <div class="contact-item" style="margin-bottom: 0;">
-          <div class="c-icon">📞</div>
+        <!-- Phone Item -->
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="width: 46px; height: 46px; border-radius: 14px; background: var(--cream-2); color: var(--pea-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+            📞
+          </div>
           <div>
-            <h5>Phone Helpline</h5>
-            <p>+91 (800) 555-NUTR</p>
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--char); margin-bottom: 4px;">Phone Helpline</h5>
+            <p style="font-size: 14px; color: var(--char-soft); margin: 0; font-weight: 600;">+91 (800) 555-NUTR</p>
           </div>
         </div>
       </div>
 
-      <!-- Static Map Embed -->
-      <div class="contact-card" style="padding: 20px;">
-        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; display:flex; align-items:center; gap:8px;">
-          📍 Location Pin: HB Colony, Bhimatangi, Bhubaneswar
-        </h4>
+      <!-- Static Location Map Card -->
+      <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <div>
+            <h4 style="font-size: 16px; font-weight: 700; color: var(--char); margin: 0;">Location Map</h4>
+            <p style="font-size: 12.5px; color: var(--char-soft); margin-top: 2px;">HB Colony, Bhimatangi, Bhubaneswar, Odisha</p>
+          </div>
+          <span style="background: var(--pea-bright); color: white; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px;">NEAR AIRPORT</span>
+        </div>
+
         <iframe 
-          class="map-frame"
           src="https://maps.google.com/maps?q=HB%20Colony,%20Bhimatangi,%20Bhubaneswar,%20Odisha&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          style="width: 100%; height: 280px; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(0,0,0,0.06);"
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
+
     </div>
 
-    <!-- Right Column: Contact Inquiry Form -->
-    <div class="contact-card">
-      <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Send Us A Message</h3>
-      <p style="color:var(--char-soft); font-size:14.5px; margin-bottom: 28px;">Fill out the form below and we will get back to you within 24 hours.</p>
+    <!-- Right Column: Premium Contact Inquiry Form Card -->
+    <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 24px; padding: 40px; box-shadow: 0 16px 40px rgba(0,0,0,0.05);">
+      <h3 style="font-size: 24px; font-weight: 700; color: var(--char); margin-bottom: 6px;">Send Us A Message</h3>
+      <p style="color: var(--char-soft); font-size: 14.5px; margin-bottom: 28px;">Fill out the details below and our team will get back to you within 24 hours.</p>
 
       <div id="contactAlert" style="display:none; padding:14px 18px; border-radius:12px; margin-bottom:24px; font-weight:600; font-size:14px;"></div>
 
       <form id="contactForm" onsubmit="handleContactSubmit(event)">
-        <div style="margin-bottom: 18px;">
-          <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:6px;">Full Name *</label>
-          <input type="text" id="contactName" required placeholder="John Doe" style="width:100%; padding:14px 18px; border-radius:12px; border:1px solid var(--line); font-size:14.5px;">
+        <!-- Full Name -->
+        <div style="margin-bottom: 20px;">
+          <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Full Name *</label>
+          <input type="text" id="contactName" required placeholder="John Doe" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
+        <!-- Email & Phone Grid -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:20px;">
           <div>
-            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:6px;">Email Address *</label>
-            <input type="email" id="contactEmail" required placeholder="john@example.com" style="width:100%; padding:14px 18px; border-radius:12px; border:1px solid var(--line); font-size:14.5px;">
+            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Email Address *</label>
+            <input type="email" id="contactEmail" required placeholder="john@example.com" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
           </div>
           <div>
-            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:6px;">Phone Number</label>
-            <input type="tel" id="contactPhone" placeholder="+91 9876543210" style="width:100%; padding:14px 18px; border-radius:12px; border:1px solid var(--line); font-size:14.5px;">
+            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Phone Number</label>
+            <input type="tel" id="contactPhone" placeholder="+91 9876543210" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
           </div>
         </div>
 
-        <div style="margin-bottom: 24px;">
-          <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:6px;">Message *</label>
-          <textarea id="contactMessage" required rows="5" placeholder="How can we help you?" style="width:100%; padding:14px 18px; border-radius:12px; border:1px solid var(--line); font-size:14.5px; font-family:inherit; resize:vertical;"></textarea>
+        <!-- Subject Select -->
+        <div style="margin-bottom: 20px;">
+          <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Inquiry Subject</label>
+          <select id="contactSubject" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; background:white; font-weight:600; color:var(--char);">
+            <option value="General Inquiry">General Product Inquiry</option>
+            <option value="Order Status">Order Status / Delivery</option>
+            <option value="Wholesale Bulk">Wholesale / Bulk Orders</option>
+            <option value="Partnerships">Press & Partnerships</option>
+          </select>
         </div>
 
-        <button type="submit" id="contactBtn" class="add-btn" style="width:100%; padding:16px; font-size:15.5px;">
+        <!-- Message Textarea -->
+        <div style="margin-bottom: 28px;">
+          <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Your Message *</label>
+          <textarea id="contactMessage" required rows="5" placeholder="How can we help you today?" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; font-family:inherit; resize:vertical; outline:none; transition:border-color 0.2s;"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="contactBtn" style="width:100%; background:var(--char); color:var(--cream); padding:16px; border-radius:14px; font-weight:800; font-size:15.5px; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(24,23,18,0.2); transition:transform 0.2s, background 0.2s;">
           Send Message →
         </button>
       </form>
@@ -118,6 +156,7 @@ async function handleContactSubmit(e) {
         name: document.getElementById('contactName').value,
         email: document.getElementById('contactEmail').value,
         phone: document.getElementById('contactPhone').value,
+        subject: document.getElementById('contactSubject').value,
         message: document.getElementById('contactMessage').value
       })
     });
