@@ -77,16 +77,8 @@ $htmlContent = '
 </html>
 ';
 
-// Headers for HTML Mail & Direct Reply-To
-$headers = array(
-    'MIME-Version: 1.0',
-    'Content-Type: text/html; charset=UTF-8',
-    'From: Nutrexia Website <no-reply@nutrexia.in>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
-    'X-Mailer: PHP/' . phpversion()
-);
-
-$mailSent = @mail($to, $mailSubject, $htmlContent, implode("\r\n", $headers));
+// Send Email Notification via SMTP / Fail-safe PHP mailer
+$mailSent = sendNutrexiaEmail($to, $mailSubject, $htmlContent, $email, $name);
 
 // 2. Try to log to database if tables exist (wrapped in try-catch so DB failure won't block email acknowledgment)
 try {
