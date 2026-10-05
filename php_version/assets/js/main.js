@@ -109,14 +109,28 @@ function initFAQ() {
   });
 }
 
-// Nutrition Tab Switcher
+// Nutrition Tab Switcher with Fail-Safe Display Toggling
 function switchNutriTab(tabName) {
-  document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.npanel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'rgba(255,255,255,0.08)';
+    b.style.color = '#FAF6EA';
+  });
+  document.querySelectorAll('.npanel').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
 
   const activeBtn = document.getElementById('ntab-' + tabName);
   const activePanel = document.getElementById('npanel-' + tabName);
 
-  if (activeBtn) activeBtn.classList.add('active');
-  if (activePanel) activePanel.classList.add('active');
+  if (activeBtn) {
+    activeBtn.classList.add('active');
+    activeBtn.style.background = '#F0B429';
+    activeBtn.style.color = '#181712';
+  }
+  if (activePanel) {
+    activePanel.classList.add('active');
+    activePanel.style.display = 'block';
+  }
 }
