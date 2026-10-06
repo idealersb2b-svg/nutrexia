@@ -15,14 +15,54 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
 
 $name = sanitize($input['name'] ?? '');
-$email = filter_var($input['email'] ?? '', FILTER_VALIDATE_EMAIL);
-$phone = sanitize($input['phone'] ?? '');
+$rawEmail = trim($input['email'] ?? '');
+$rawPhone = trim($input['phone'] ?? '');
 $subject = sanitize($input['subject'] ?? 'General Inquiry');
 $message = sanitize($input['message'] ?? '');
 
-if (!$name || !$email || !$message) {
-    jsonResponse(['error' => 'Please fill in all required fields (Name, Email, Message)'], 400);
+// 1. Mandatory Fields Check
+if (!$name || !$rawEmail || !$rawPhone || !$message) {
+    jsonResponse(['error' => 'All fields (Full Name, Email Address, Phone Number, and Message) are required.'], 400);
 }
+
+// 2. Email Validation (Format + Spam/Disposable domain filter)
+$email = filter_var($rawEmail, FILTER_VALIDATE_EMAIL);
+if (!$email) {
+    jsonResponse(['error' => 'Please enter a valid email address (e.g. name@gmail.com).'], 400);
+}
+
+$emailParts = explode('@', strtolower($email));
+$domain = end($emailParts);
+
+$disposableDomains = [
+    'tempmail.com', 'temp-mail.org', 'mailinator.com', '10minutemail.com', 'guerrillamail.com',
+    'dispostable.com', 'trashmail.com', 'yopmail.com', 'sharklasers.com', 'throwawaymail.com',
+    'getnada.com', 'binkmail.com', 'maildrop.cc', 'fakeinbox.com', 'tempinbox.com', 'generator.email',
+    'burnermail.io', 'mytemp.email', 'crazymailing.com', 'inboxalias.com', 'mohmal.com',
+    'disposablemail.com', 'guerrillamailblock.com', 'guerrillamail.net', 'guerrillamail.org'
+];
+
+if (in_array($domain, $disposableDomains)) {
+    jsonResponse(['error' => 'Spam or temporary email addresses are not accepted. Please use a valid email (Gmail, Yahoo, Outlook, etc.).'], 400);
+}
+
+if (!preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/', $domain)) {
+    jsonResponse(['error' => 'Please enter a valid email address with a recognized domain.'], 400);
+}
+
+// 3. Indian Phone Number Validation (Mandatory 10-digit starting 6, 7, 8, 9)
+$cleanPhone = preg_replace('/[^\d]/', '', $rawPhone);
+if (strlen($cleanPhone) === 12 && substr($cleanPhone, 0, 2) === '91') {
+    $cleanPhone = substr($cleanPhone, 2);
+} else if (strlen($cleanPhone) === 11 && substr($cleanPhone, 0, 1) === '0') {
+    $cleanPhone = substr($cleanPhone, 1);
+}
+
+if (!preg_match('/^[6-9]\d{9}$/', $cleanPhone)) {
+    jsonResponse(['error' => 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9 (e.g. 9876543210).'], 400);
+}
+
+$phone = $cleanPhone;
 
 // 1. Send HTML Email Notification to support@nutrexia.in FIRST
 $to = 'support@nutrexia.in';

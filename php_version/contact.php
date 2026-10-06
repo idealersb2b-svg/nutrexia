@@ -90,14 +90,14 @@ require_once __DIR__ . '/includes/header.php';
         </div>
 
         <!-- Email & Phone Grid -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:20px;">
           <div>
             <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Email Address *</label>
-            <input type="email" id="contactEmail" required placeholder="john@example.com" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
+            <input type="email" id="contactEmail" required placeholder="john@gmail.com" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
           </div>
           <div>
-            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Phone Number</label>
-            <input type="tel" id="contactPhone" placeholder="+91 9876543210" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
+            <label style="display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; color:var(--char);">Phone Number * (10-Digit Mobile)</label>
+            <input type="tel" id="contactPhone" required placeholder="9876543210" maxlength="14" style="width:100%; padding:14px 18px; border-radius:12px; border:1.5px solid var(--line); font-size:14.5px; outline:none; transition:border-color 0.2s;">
           </div>
         </div>
 
@@ -129,11 +129,72 @@ require_once __DIR__ . '/includes/header.php';
 </section>
 
 <script>
+// Known disposable / temporary mail services list for instant client-side check
+const DISPOSABLE_DOMAINS = [
+  'tempmail.com', 'temp-mail.org', 'mailinator.com', '10minutemail.com', 'guerrillamail.com',
+  'dispostable.com', 'trashmail.com', 'yopmail.com', 'sharklasers.com', 'throwawaymail.com',
+  'getnada.com', 'binkmail.com', 'maildrop.cc', 'fakeinbox.com', 'tempinbox.com', 'generator.email',
+  'burnermail.io', 'mytemp.email', 'crazymailing.com', 'inboxalias.com', 'mohmal.com'
+];
+
 async function handleContactSubmit(e) {
   e.preventDefault();
   const alertBox = document.getElementById('contactAlert');
   const btn = document.getElementById('contactBtn');
+
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const phone = document.getElementById('contactPhone').value.trim();
+  const subject = document.getElementById('contactSubject').value;
+  const message = document.getElementById('contactMessage').value.trim();
+
   alertBox.style.display = 'none';
+
+  // 1. Mandatory Field Check
+  if (!name || !email || !phone || !message) {
+    alertBox.style.background = '#fce8e8';
+    alertBox.style.color = '#b04a4a';
+    alertBox.textContent = 'All fields including Full Name, Email, Phone Number, and Message are required.';
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  // 2. Email Validation (Format + Spam/Disposable domain check)
+  const emailDomain = email.split('@')[1]?.toLowerCase();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email) || !emailDomain) {
+    alertBox.style.background = '#fce8e8';
+    alertBox.style.color = '#b04a4a';
+    alertBox.textContent = 'Please enter a valid email address (e.g., name@gmail.com).';
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  if (DISPOSABLE_DOMAINS.includes(emailDomain)) {
+    alertBox.style.background = '#fce8e8';
+    alertBox.style.color = '#b04a4a';
+    alertBox.textContent = 'Temporary/disposable emails are not allowed. Please use a legitimate email provider (Gmail, Yahoo, Outlook, work email, etc.).';
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  // 3. Indian Phone Number Validation (10 digits starting 6-9)
+  let cleanPhone = phone.replace(/[^\d]/g, '');
+  if (cleanPhone.length === 12 && cleanPhone.startsWith('91')) {
+    cleanPhone = cleanPhone.substring(2);
+  } else if (cleanPhone.length === 11 && cleanPhone.startsWith('0')) {
+    cleanPhone = cleanPhone.substring(1);
+  }
+
+  const indianPhoneRegex = /^[6-9]\d{9}$/;
+  if (!indianPhoneRegex.test(cleanPhone)) {
+    alertBox.style.background = '#fce8e8';
+    alertBox.style.color = '#b04a4a';
+    alertBox.textContent = 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9 (e.g., 9876543210).';
+    alertBox.style.display = 'block';
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Sending Message...';
 
@@ -142,11 +203,11 @@ async function handleContactSubmit(e) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        phone: document.getElementById('contactPhone').value,
-        subject: document.getElementById('contactSubject').value,
-        message: document.getElementById('contactMessage').value
+        name,
+        email,
+        phone: cleanPhone,
+        subject,
+        message
       })
     });
 
