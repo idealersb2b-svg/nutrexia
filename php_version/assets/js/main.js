@@ -62,7 +62,7 @@ function renderCart() {
 
   itemsContainer.innerHTML = cart.map(item => `
     <div class="d-item">
-      <img src="${item.image || 'https://via.placeholder.com/48'}" alt="${item.name}">
+      <img src="${item.image || '/assets/images/pack.png'}" alt="${item.name}">
       <div>
         <div class="di-name">${item.name}</div>
         <div class="di-meta">Qty: ${item.quantity} × ₹${item.price}</div>

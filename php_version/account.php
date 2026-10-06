@@ -38,7 +38,7 @@ $wishlistProducts = [
         'name' => 'Nutrexia Founding Pouch',
         'subtitle' => 'Rainfed Millets + Plant Protein',
         'price' => 799.00,
-        'image' => 'https://via.placeholder.com/150x150/3F7A1F/FFFFFF?text=Founding+Pouch'
+        'image' => '/assets/images/pack.png'
     ]
 ];
 ?>

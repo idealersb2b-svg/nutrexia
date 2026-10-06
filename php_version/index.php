@@ -11,7 +11,7 @@ $products = [
         'price' => 799.00,
         'mrp' => 1199.00,
         'servings' => 30,
-        'image' => 'https://via.placeholder.com/200x200/3F7A1F/FFFFFF?text=Founding+Pouch',
+        'image' => '/assets/images/pack.png',
         'badge' => 'MOST POPULAR'
     ],
     [
@@ -21,7 +21,7 @@ $products = [
         'price' => 1449.00,
         'mrp' => 2398.00,
         'servings' => 60,
-        'image' => 'https://via.placeholder.com/200x200/2C5715/FFFFFF?text=Duo+Pack',
+        'image' => '/assets/images/pack.png',
         'badge' => 'BEST VALUE'
     ],
     [
@@ -31,7 +31,7 @@ $products = [
         'price' => 2699.00,
         'mrp' => 4796.00,
         'servings' => 120,
-        'image' => 'https://via.placeholder.com/200x200/F0B429/181712?text=Family+Stack',
+        'image' => '/assets/images/pack.png',
         'badge' => 'FAMILY SAVINGS'
     ]
 ];
@@ -61,7 +61,7 @@ $products = [
       </div>
       <div class="hero-visual">
         <div class="pack-shot">
-          <img src="https://via.placeholder.com/340x420/3F7A1F/FFFFFF?text=NUTREXIA+POUCH" alt="Nutrexia Superfood Pouch" />
+          <img src="/assets/images/pack.png" alt="Nutrexia Superfood Pouch" />
           <div class="float-chip chip-1">
             <span class="num">15g</span>
             <span class="lbl">Bio Protein</span>
