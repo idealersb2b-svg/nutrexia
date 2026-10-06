@@ -51,7 +51,7 @@ $user = getCurrentUser();
       </div>
       <div class="nav-right">
         <?php if ($user): ?>
-          <a href="/account.php" style="display:flex; align-items:center; justify-center:center; width:38px; height:38px; border-radius:50%; background:var(--cream-2); color:var(--char); text-decoration:none; font-weight:700; font-size:14px; text-align:center; line-height:38px;">
+          <a href="/account.php" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:var(--cream-2); color:var(--char); text-decoration:none; font-weight:700; font-size:14px; text-align:center; line-height:1;" title="My Account (<?php echo sanitize($user['first_name']); ?>)">
             <?php echo strtoupper(substr($user['first_name'], 0, 1)); ?>
           </a>
         <?php else: ?>
