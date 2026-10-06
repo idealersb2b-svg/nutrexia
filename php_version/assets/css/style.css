@@ -47,12 +47,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 /* ---------- Nav ---------- */
 header{
-  position:sticky; top:0; z-index:100; background:rgba(250,246,234,0.95);
-  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:100; background:#FFFFFF;
+  backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
-nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1180px; margin:0 auto;}
+nav{display:flex; align-items:center; justify-content:space-between; padding:12px 28px; max-width:1180px; margin:0 auto;}
 .brand{display:flex; align-items:center; gap:10px;}
-.brand img{height:34px; width:auto;}
+.brand img{height:54px; max-height:54px; width:auto;}
 .navlinks{display:flex; gap:34px; font-weight:600; font-size:15px;}
 .navlinks a{position:relative; padding:6px 0; color:var(--char-soft);}
 .navlinks a:hover{color:var(--pea-deep);}

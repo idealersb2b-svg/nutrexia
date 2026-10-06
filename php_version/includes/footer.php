@@ -3,7 +3,7 @@
     <div class="wrap">
       <div class="foot-grid">
         <div class="foot-brand">
-          <img src="/assets/images/logo.png" alt="Nutrexia Logo" style="height: 38px; width: auto; display: block; object-fit: contain; margin-bottom: 14px;" />
+          <img src="/assets/images/logo.png" alt="Nutrexia Logo" style="height: 48px; max-height: 48px; width: auto; display: block; object-fit: contain; margin-bottom: 14px;" />
           <p>Climate-smart, bio-optimized superfood breakfast formulations engineered for peak cellular absorption and sustainable living.</p>
         </div>
         <div class="foot-col">

@@ -39,7 +39,7 @@ $user = getCurrentUser();
   <header>
     <nav>
       <a href="/" class="brand">
-        <img src="/assets/images/logo.png" alt="Nutrexia Logo" style="height: 42px; width: auto; display: block; object-fit: contain;" />
+        <img src="/assets/images/logo.png" alt="Nutrexia Logo" style="height: 54px; max-height: 54px; width: auto; display: block; object-fit: contain;" />
       </a>
       <div class="navlinks">
         <a href="/#audience">Who it's for</a>
