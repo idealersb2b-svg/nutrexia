@@ -16,7 +16,7 @@ $user = getCurrentUser();
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=<?php echo time(); ?>">
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@ $user = getCurrentUser();
   </div>
 
   <!-- Header Navigation Bar -->
-  <header>
+  <header style="background: #FFFFFF !important; box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; border-bottom: 1px solid rgba(0,0,0,0.06) !important; position: sticky; top: 0; z-index: 100;">
     <nav>
       <a href="/" class="brand">
         <img src="/assets/images/logo.png" alt="Nutrexia Logo" style="height: 54px; max-height: 54px; width: auto; display: block; object-fit: contain;" />
