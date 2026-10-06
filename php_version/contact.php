@@ -131,10 +131,13 @@ require_once __DIR__ . '/includes/header.php';
 <script>
 // Known disposable / temporary mail services list for instant client-side check
 const DISPOSABLE_DOMAINS = [
+  'tmail.io', 'tmail.com', 'tmailor.com', 'tmail.ws', 'tmail.link', 'tmpmail.org', 'tmpmail.net',
   'tempmail.com', 'temp-mail.org', 'mailinator.com', '10minutemail.com', 'guerrillamail.com',
-  'dispostable.com', 'trashmail.com', 'yopmail.com', 'sharklasers.com', 'throwawaymail.com',
-  'getnada.com', 'binkmail.com', 'maildrop.cc', 'fakeinbox.com', 'tempinbox.com', 'generator.email',
-  'burnermail.io', 'mytemp.email', 'crazymailing.com', 'inboxalias.com', 'mohmal.com'
+  'guerrillamail.net', 'guerrillamail.org', 'guerrillamailblock.com', 'dispostable.com', 'trashmail.com',
+  'yopmail.com', 'sharklasers.com', 'throwawaymail.com', 'getnada.com', 'binkmail.com', 'maildrop.cc',
+  'fakeinbox.com', 'tempinbox.com', 'generator.email', 'burnermail.io', 'mytemp.email', 'crazymailing.com',
+  'inboxalias.com', 'mohmal.com', 'disposablemail.com', 'mailnesia.com', 'mailcatch.com', 'spamgourmet.com',
+  'disposable.com', 'fake.com', 'test.com', 'example.com'
 ];
 
 async function handleContactSubmit(e) {

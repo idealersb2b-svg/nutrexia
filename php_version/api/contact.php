@@ -35,19 +35,28 @@ $emailParts = explode('@', strtolower($email));
 $domain = end($emailParts);
 
 $disposableDomains = [
+    'tmail.io', 'tmail.com', 'tmailor.com', 'tmail.ws', 'tmail.link', 'tmpmail.org', 'tmpmail.net',
     'tempmail.com', 'temp-mail.org', 'mailinator.com', '10minutemail.com', 'guerrillamail.com',
     'dispostable.com', 'trashmail.com', 'yopmail.com', 'sharklasers.com', 'throwawaymail.com',
     'getnada.com', 'binkmail.com', 'maildrop.cc', 'fakeinbox.com', 'tempinbox.com', 'generator.email',
     'burnermail.io', 'mytemp.email', 'crazymailing.com', 'inboxalias.com', 'mohmal.com',
-    'disposablemail.com', 'guerrillamailblock.com', 'guerrillamail.net', 'guerrillamail.org'
+    'disposablemail.com', 'guerrillamailblock.com', 'guerrillamail.net', 'guerrillamail.org',
+    'disposable.com', 'fake.com', 'test.com', 'example.com', 'invalid.com', 'mailnesia.com'
 ];
 
 if (in_array($domain, $disposableDomains)) {
-    jsonResponse(['error' => 'Spam or temporary email addresses are not accepted. Please use a valid email (Gmail, Yahoo, Outlook, etc.).'], 400);
+    jsonResponse(['error' => 'Spam or temporary email addresses (@' . htmlspecialchars($domain) . ') are not accepted. Please use a legitimate email address (Gmail, Yahoo, Outlook, work email, etc.).'], 400);
 }
 
 if (!preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/', $domain)) {
-    jsonResponse(['error' => 'Please enter a valid email address with a recognized domain.'], 400);
+    jsonResponse(['error' => 'Please enter a valid email address with a recognized domain name.'], 400);
+}
+
+// Live DNS MX Check: Ensures the domain has active mail server records on the Internet
+if (function_exists('checkdnsrr')) {
+    if (!@checkdnsrr($domain, 'MX') && !@checkdnsrr($domain, 'A')) {
+        jsonResponse(['error' => 'The email domain (@' . htmlspecialchars($domain) . ') does not exist or has no active mail server. Please enter a valid email address.'], 400);
+    }
 }
 
 // 3. Indian Phone Number Validation (Mandatory 10-digit starting 6, 7, 8, 9)
